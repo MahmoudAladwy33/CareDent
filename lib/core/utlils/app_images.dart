@@ -1,3 +1,5 @@
 class AppImages {
-  // static const String signUpImage = 'assets/images/sign_up_image.webp';
+  static const String splashViewBackground =
+      'assets/images/splash_view_background.png';
+  static const String appLogo = 'assets/images/app_logo.png';
 }
