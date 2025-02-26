@@ -7,6 +7,6 @@ class TextStyles {
   static TextStyle font16PrimaryBlueRegular = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.regular,
-    color: ColorsManager.primaryPinkColor,
+    color: ColorsManager.mainBlue,
   );
 }
