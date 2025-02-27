@@ -44,27 +44,32 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(AppImages.splashViewBackground),
-          Positioned(
-            top: 305.h,
-            left: 95.w,
-            child: Image.asset(AppImages.appLogo, width: 189.w, height: 74.h),
+          Image.asset(
+            AppImages.splashViewBackground,
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
           ),
-          Positioned(
-            top: 390.h,
-            left: 160.w,
-            child: AnimatedBuilder(
-              animation: _controller,
-              builder: (context, child) {
-                return Transform.rotate(
-                  angle: _controller.value * 2 * pi,
-                  child: child,
-                );
-              },
-              child: CustomPaint(
-                size: Size(70.w, 70.h),
-                painter: DoubleHalfCirclePainter(),
-              ),
+          Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(AppImages.appLogo, width: 189.w, height: 74.h),
+                SizedBox(height: 18.h),
+                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, child) {
+                    return Transform.rotate(
+                      angle: _controller.value * 2 * pi,
+                      child: child,
+                    );
+                  },
+                  child: CustomPaint(
+                    size: Size(70.w, 70.h),
+                    painter: DoubleHalfCirclePainter(),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
