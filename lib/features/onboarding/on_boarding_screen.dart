@@ -1,3 +1,4 @@
+import 'package:caredent/features/onboarding/ui/widgets/on_boarding_screen_body.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -5,6 +6,6 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return OnBoardingScreenBody();
   }
 }
