@@ -1,10 +1,11 @@
-import 'package:caredent/core/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/theme/text_styless.dart';
 
-class PasswordTextField extends StatelessWidget {
-  const PasswordTextField({super.key});
+import '../../../../core/theme/text_styless.dart';
+import '../../../../core/widgets/custom_text_field.dart';
+
+class ConfirmPasswordTextField extends StatelessWidget {
+  const ConfirmPasswordTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +15,14 @@ class PasswordTextField extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.lock_rounded, size: 20),
+              Icon(Icons.check_circle, size: 20),
               SizedBox(width: 8.w),
-              Text('Password', style: TextStyles.font16DarkBlueMedieum),
+              Text('Confirm Password', style: TextStyles.font16DarkBlueMedieum),
             ],
           ),
           SizedBox(height: 8.h),
           CustomTextField(
-            hintText: 'Enter Your Password',
+            hintText: 'Enter Your Password Again',
             icon: Icons.visibility_off_rounded,
           ),
         ],

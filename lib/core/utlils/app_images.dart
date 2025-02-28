@@ -9,4 +9,5 @@ class AppImages {
   static const onBoardingThirdScreen =
       'assets/images/on_boarding_third_screen.png';
   static const loginAppBar = 'assets/images/login_app_bar.png';
+  static const signUpAppBar = 'assets/images/sign_up_app_bar.png';
 }

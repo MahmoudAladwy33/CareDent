@@ -84,7 +84,7 @@ class OnBoardingThirdScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Get Started',
-                        style: TextStyles.font22WhiteSemiBold,
+                        style: TextStyles.font20WhiteSemiBold,
                       ),
                     ),
                   ),
