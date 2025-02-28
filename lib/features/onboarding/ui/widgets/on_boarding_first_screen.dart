@@ -52,9 +52,7 @@ class OnBoardingFirstScreen extends StatelessWidget {
               SizedBox(height: 21.h),
               Text(
                 'Welcome to CareDent!',
-                style: TextStyles.font24DarkBlueBold.copyWith(
-                  fontFamily: 'Poppins',
-                ),
+                style: TextStyles.font24DarkBlueExtraBold,
               ),
               SizedBox(height: 12.h),
               Text(
@@ -75,7 +73,10 @@ class OnBoardingFirstScreen extends StatelessWidget {
                       shape: BoxShape.rectangle,
                     ),
                     child: Center(
-                      child: Text('Next', style: TextStyles.font22WhiteBold),
+                      child: Text(
+                        'Next',
+                        style: TextStyles.font22WhiteSemiBold,
+                      ),
                     ),
                   ),
                 ),
