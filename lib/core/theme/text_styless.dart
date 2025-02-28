@@ -54,8 +54,8 @@ class TextStyles {
     fontFamily: 'Poppins',
   );
 
-  static TextStyle font22WhiteSemiBold = TextStyle(
-    fontSize: 22.sp,
+  static TextStyle font20WhiteSemiBold = TextStyle(
+    fontSize: 20.sp,
     fontWeight: FontWeightHelper.semiBold,
     color: Colors.white,
     fontFamily: 'Poppins',

@@ -12,9 +12,12 @@ class ForgetPassword extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Align(
         alignment: Alignment.centerRight,
-        child: Text(
-          'Forget Password?',
-          style: TextStyles.font15DarkBlueRegular,
+        child: GestureDetector(
+          onTap: () {},
+          child: Text(
+            'Forget Password?',
+            style: TextStyles.font15DarkBlueRegular,
+          ),
         ),
       ),
     );

@@ -75,7 +75,7 @@ class OnBoardingFirstScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Next',
-                        style: TextStyles.font22WhiteSemiBold,
+                        style: TextStyles.font20WhiteSemiBold,
                       ),
                     ),
                   ),

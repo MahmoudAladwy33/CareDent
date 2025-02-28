@@ -1,12 +1,12 @@
-import 'package:caredent/core/theme/text_styless.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/routing/app_router.dart';
+import '../../../../core/theme/text_styless.dart';
 
-class DontHaveAnAccount extends StatelessWidget {
-  const DontHaveAnAccount({super.key});
+class AlreadyHaveAnAccount extends StatelessWidget {
+  const AlreadyHaveAnAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +16,15 @@ class DontHaveAnAccount extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Don\'t have an account?',
+            'Already Have an Account?',
             style: TextStyles.font15DarkBlueRegular,
           ),
           TextButton(
             style: TextButton.styleFrom(padding: EdgeInsets.zero),
             onPressed: () {
-              GoRouter.of(context).push(AppRouter.kSignUpScreen);
+              GoRouter.of(context).push(AppRouter.kLoginScreen);
             },
-            child: Text('Sign Up', style: TextStyles.font15MainBlueBold),
+            child: Text('Login', style: TextStyles.font15MainBlueBold),
           ),
         ],
       ),
