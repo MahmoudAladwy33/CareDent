@@ -61,9 +61,7 @@ class OnBoardingThirdScreen extends StatelessWidget {
               SizedBox(height: 21.h),
               Text(
                 'Ready to Transform\nYour Smile?',
-                style: TextStyles.font24DarkBlueBold.copyWith(
-                  fontFamily: 'Poppins',
-                ),
+                style: TextStyles.font24DarkBlueExtraBold,
               ),
               SizedBox(height: 12.h),
               Text(
@@ -86,7 +84,7 @@ class OnBoardingThirdScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Get Started',
-                        style: TextStyles.font22WhiteBold,
+                        style: TextStyles.font22WhiteSemiBold,
                       ),
                     ),
                   ),
