@@ -45,10 +45,10 @@ class GenderSelectionState extends State<GenderSelection> {
     bool isSelected = selectedGender == gender;
 
     return SizedBox(
-      width: 145.w,
+      width: 130.w,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
-          padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 14.h),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
