@@ -1,7 +1,9 @@
+import 'package:caredent/core/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/text_styless.dart';
+import '../../../../../core/theme/text_styless.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({super.key});
@@ -13,7 +15,9 @@ class ForgetPassword extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerRight,
         child: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            GoRouter.of(context).push(AppRouter.kForgetPassword);
+          },
           child: Text(
             'Forget Password?',
             style: TextStyles.font15DarkBlueRegular,

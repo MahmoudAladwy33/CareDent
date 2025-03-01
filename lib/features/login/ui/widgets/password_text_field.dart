@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/text_styless.dart';
 
 class PasswordTextField extends StatelessWidget {
-  const PasswordTextField({super.key});
-
+  const PasswordTextField({super.key, this.hint});
+  final String? hint;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +21,7 @@ class PasswordTextField extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           CustomTextField(
-            hintText: 'Enter Your Password',
+            hintText: hint ?? 'Enter Your Password',
             icon: Icons.visibility_off_rounded,
           ),
         ],

@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import '../theme/text_styless.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.buttonName, this.onTap});
+  const CustomButton({
+    super.key,
+    required this.buttonName,
+    required this.onTap,
+  });
   final String buttonName;
   final void Function()? onTap;
 
