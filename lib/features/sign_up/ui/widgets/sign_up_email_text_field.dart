@@ -1,11 +1,11 @@
-import 'package:caredent/core/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/text_styless.dart';
+import '../../../../core/widgets/custom_text_field.dart';
 
-class PasswordTextField extends StatelessWidget {
-  const PasswordTextField({super.key, this.hint});
-  final String? hint;
+class SignUpEmailTextField extends StatelessWidget {
+  const SignUpEmailTextField({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,16 +14,13 @@ class PasswordTextField extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.lock_rounded, size: 20),
+              Icon(Icons.email_rounded, size: 20),
               SizedBox(width: 8.w),
-              Text('Password', style: TextStyles.font16DarkBlueMedieum),
+              Text('Email', style: TextStyles.font16DarkBlueMedieum),
             ],
           ),
           SizedBox(height: 8.h),
-          CustomTextField(
-            hintText: hint ?? 'Enter Your Password',
-            icon: Icons.visibility_off_rounded,
-          ),
+          CustomTextField(hintText: 'Enter Your Email'),
         ],
       ),
     );
