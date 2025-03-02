@@ -1,3 +1,5 @@
+import 'package:caredent/core/di/service_locator.dart';
+import 'package:caredent/features/login/logic/cubit/login_cubit.dart';
 import 'package:caredent/features/login/login_screen.dart';
 import 'package:caredent/features/login/ui/widgets/forget_password/create_new_password_screen_body.dart';
 import 'package:caredent/features/login/ui/widgets/forget_password/forget_password_screen_body.dart';
@@ -7,6 +9,7 @@ import 'package:caredent/features/sign_up/ui/sign_up_screen.dart';
 import 'package:caredent/features/sign_up/ui/widgets/create_account_screen_body.dart';
 import 'package:caredent/features/sign_up/ui/widgets/verify_account_screen_body.dart';
 import 'package:caredent/features/splash_view/splash_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -36,7 +39,10 @@ abstract class AppRouter {
       GoRoute(
         path: kLoginScreen,
         builder: (context, state) {
-          return const LoginScreen();
+          return BlocProvider(
+            create: (context) => getIt<LoginCubit>(),
+            child: const LoginScreen(),
+          );
         },
       ),
 
