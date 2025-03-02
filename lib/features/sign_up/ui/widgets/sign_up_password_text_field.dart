@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/text_styless.dart';
-import '../../../../core/widgets/custom_text_field.dart';
+import '../../../../core/widgets/custom_text_form_field.dart';
 
 class SignUpPasswordTextField extends StatelessWidget {
   const SignUpPasswordTextField({super.key});
@@ -20,7 +20,7 @@ class SignUpPasswordTextField extends StatelessWidget {
             ],
           ),
           SizedBox(height: 8.h),
-          CustomTextField(
+          CustomTextFormField(
             hintText: 'Enter Your Password',
             icon: Icons.visibility_off_rounded,
           ),

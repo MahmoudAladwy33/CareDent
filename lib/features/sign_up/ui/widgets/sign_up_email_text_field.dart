@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/text_styless.dart';
-import '../../../../core/widgets/custom_text_field.dart';
+import '../../../../core/widgets/custom_text_form_field.dart';
 
 class SignUpEmailTextField extends StatelessWidget {
   const SignUpEmailTextField({super.key});
@@ -20,7 +20,7 @@ class SignUpEmailTextField extends StatelessWidget {
             ],
           ),
           SizedBox(height: 8.h),
-          CustomTextField(hintText: 'Enter Your Email'),
+          CustomTextFormField(hintText: 'Enter Your Email'),
         ],
       ),
     );

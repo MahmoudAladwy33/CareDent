@@ -3,15 +3,28 @@ import 'package:caredent/core/theme/text_styless.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.hintText, this.icon});
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
+    super.key,
+    required this.hintText,
+    this.icon,
+    this.isObscureText,
+    this.controller,
+    this.validator,
+    this.suffixIcon,
+  });
   final String hintText;
   final IconData? icon;
+  final bool? isObscureText;
+  final TextEditingController? controller;
+  final Function(String?)? validator;
+  final Widget? suffixIcon;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
-        suffixIcon: Icon(icon, size: 20),
+        suffixIcon: suffixIcon,
         filled: true,
         fillColor: Color(0xffe5e9ef),
         hintText: hintText,
@@ -28,8 +41,16 @@ class CustomTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(color: Colors.red),
         ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.red),
+        ),
         contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       ),
+      obscureText: isObscureText ?? false,
+      validator: (value) {
+        return validator!(value);
+      },
     );
   }
 }

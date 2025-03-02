@@ -2,7 +2,7 @@ import 'package:caredent/core/theme/text_styless.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/widgets/custom_text_field.dart';
+import '../../../../core/widgets/custom_text_form_field.dart';
 
 class UserNameTextField extends StatelessWidget {
   const UserNameTextField({super.key});
@@ -21,7 +21,7 @@ class UserNameTextField extends StatelessWidget {
             ],
           ),
           SizedBox(height: 8.h),
-          CustomTextField(hintText: 'Enter Your User Name'),
+          CustomTextFormField(hintText: 'Enter Your User Name'),
         ],
       ),
     );

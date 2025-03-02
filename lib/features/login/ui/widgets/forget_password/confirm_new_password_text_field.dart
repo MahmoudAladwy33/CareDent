@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/theme/text_styless.dart';
-import '../../../../../core/widgets/custom_text_field.dart';
+import '../../../../../core/widgets/custom_text_form_field.dart';
 
 class ConfirmNewPasswordTextField extends StatelessWidget {
   const ConfirmNewPasswordTextField({super.key});
@@ -21,7 +21,7 @@ class ConfirmNewPasswordTextField extends StatelessWidget {
             ],
           ),
           SizedBox(height: 8.h),
-          CustomTextField(
+          CustomTextFormField(
             hintText: 'Enter Your Password Again',
             icon: Icons.visibility_off_rounded,
           ),

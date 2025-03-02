@@ -1,10 +1,12 @@
+import 'package:caredent/features/login/logic/cubit/login_cubit.dart';
 import 'package:caredent/features/login/ui/widgets/dont_have_an_account.dart';
-import 'package:caredent/features/login/ui/widgets/login_email_text_field.dart';
+import 'package:caredent/features/login/ui/widgets/login_bloc_listener.dart';
+import 'package:caredent/features/login/ui/widgets/email_and_password_form.dart';
 import 'package:caredent/features/login/ui/widgets/forget_password/forget_password.dart';
 import 'package:caredent/features/login/ui/widgets/login_app_bar.dart';
 import 'package:caredent/features/login/ui/widgets/login_button.dart';
-import 'package:caredent/features/login/ui/widgets/login_password_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreenBody extends StatelessWidget {
@@ -19,18 +21,29 @@ class LoginScreenBody extends StatelessWidget {
           children: [
             LoginAppBar(),
             SizedBox(height: 18.h),
-            LoginEmailTextField(),
-            SizedBox(height: 18.h),
-            LoginPasswordTextField(),
+            EmailAndPasswordForm(),
+
             SizedBox(height: 18.h),
             ForgetPassword(),
             SizedBox(height: 18.h),
-            LoginButton(),
+            LoginButton(
+              onTap: () {
+                validateThenDoLogin(context);
+              },
+            ),
             SizedBox(height: 8.h),
             DontHaveAnAccount(),
+            LoginBlocListener(),
           ],
         ),
       ),
     );
+  }
+
+  void validateThenDoLogin(BuildContext context) {
+    final form = context.read<LoginCubit>().formKey.currentState;
+    if (form!.validate()) {
+      context.read<LoginCubit>().emitLoginStates();
+    }
   }
 }

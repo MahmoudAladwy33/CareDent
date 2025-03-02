@@ -1,5 +1,6 @@
 class ApiConstants {
-  static const String apiBaseUrl = "https://carenest-serverside.vercel.app/";
+  static const String apiBaseUrl = "https://caredent.vercel.app/";
+  static const String login = "auth/login";
 }
 
 
