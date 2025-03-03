@@ -1,8 +1,8 @@
 
 import 'package:caredent/core/networking/api_result.dart';
 import 'package:caredent/core/networking/api_service.dart';
-import 'package:caredent/features/login/data/models/login_request_body.dart';
-import 'package:caredent/features/login/data/models/login_response_body.dart';
+import 'package:caredent/features/login/data/models/login/login_request_body.dart';
+import 'package:caredent/features/login/data/models/login/login_response_body.dart';
 
 import '../../../../core/networking/api_error_handler.dart';
 

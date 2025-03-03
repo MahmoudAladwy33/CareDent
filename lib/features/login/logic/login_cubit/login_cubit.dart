@@ -3,9 +3,9 @@ import 'package:bloc/bloc.dart';
 import 'package:caredent/core/helper/constants.dart';
 import 'package:caredent/core/helper/shared_pref_helper.dart';
 import 'package:caredent/core/networking/dio_factory.dart';
-import 'package:caredent/features/login/data/models/login_request_body.dart';
+import 'package:caredent/features/login/data/models/login/login_request_body.dart';
 import 'package:caredent/features/login/data/repos/login_repo.dart';
-import 'package:caredent/features/login/logic/cubit/login_state.dart';
+import 'package:caredent/features/login/logic/login_cubit/login_state.dart';
 import 'package:flutter/material.dart';
 
 class LoginCubit extends Cubit<LoginState> {

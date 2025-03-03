@@ -3,8 +3,14 @@ import 'package:caredent/features/sign_up/logic/sign_up_cubit/sign_up_cubit.dart
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../features/login/data/repos/create_new_password_repo.dart';
+import '../../features/login/data/repos/forget_pass_repo.dart';
 import '../../features/login/data/repos/login_repo.dart';
-import '../../features/login/logic/cubit/login_cubit.dart';
+import '../../features/login/data/repos/verify_password_repo.dart';
+import '../../features/login/logic/create_new_password_cubit/create_new_password_cubit.dart';
+import '../../features/login/logic/forget_pass_cubit/forget_password_cubit.dart';
+import '../../features/login/logic/login_cubit/login_cubit.dart';
+import '../../features/login/logic/verify_pass_cubit/verify_password_cubit.dart';
 import '../../features/sign_up/data/repos/verify_account_repo.dart';
 import '../../features/sign_up/logic/verify_account_cubit/verify_account_cubit.dart';
 import '../networking/api_service.dart';
@@ -30,4 +36,27 @@ Future<void> setupGetIt() async {
     () => VerifyAccountRepo(getIt()),
   );
   getIt.registerFactory<VerifyAccountCubit>(() => VerifyAccountCubit(getIt()));
+
+  //forget password
+  getIt.registerLazySingleton<ForgetPassRepo>(() => ForgetPassRepo(getIt()));
+
+  getIt.registerFactory<ForgetPasswordCubit>(
+    () => ForgetPasswordCubit(getIt()),
+  );
+
+  //verify password
+  getIt.registerLazySingleton<VerifyPasswordRepo>(
+    () => VerifyPasswordRepo(getIt()),
+  );
+  getIt.registerFactory<VerifyPasswordCubit>(
+    () => VerifyPasswordCubit(getIt()),
+  );
+
+  //create new password
+  getIt.registerLazySingleton<CreateNewPasswordRepo>(
+    () => CreateNewPasswordRepo(getIt()),
+  );
+  getIt.registerFactory<CreateNewPasswordCubit>(
+    () => CreateNewPasswordCubit(getIt()),
+  );
 }

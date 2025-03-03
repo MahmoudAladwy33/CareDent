@@ -1,6 +1,7 @@
 import 'package:caredent/core/networking/api_constants.dart';
-import 'package:caredent/features/login/data/models/login_request_body.dart';
-import 'package:caredent/features/login/data/models/login_response_body.dart';
+import 'package:caredent/features/login/data/models/create_new_password/create_new_password_response.dart';
+import 'package:caredent/features/login/data/models/login/login_request_body.dart';
+import 'package:caredent/features/login/data/models/login/login_response_body.dart';
 import 'package:caredent/features/sign_up/data/models/sign_up/sign_up_request_body.dart';
 import 'package:caredent/features/sign_up/data/models/sign_up/sign_up_response.dart';
 import 'package:caredent/features/sign_up/data/models/verify_account/verify_account_request_body.dart';
@@ -8,6 +9,12 @@ import 'package:caredent/features/sign_up/data/models/verify_account/verify_acco
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
+
+import '../../features/login/data/models/create_new_password/create_new_password_request_body.dart';
+import '../../features/login/data/models/forget_password/forget_pass_email_request_body.dart';
+import '../../features/login/data/models/forget_password/forget_pass_response.dart';
+import '../../features/login/data/models/verify_password/verify_password_request_body.dart';
+import '../../features/login/data/models/verify_password/verify_password_response.dart';
 part 'api_service.g.dart';
 
 @RestApi(baseUrl: ApiConstants.apiBaseUrl)
@@ -20,9 +27,28 @@ abstract class ApiService {
   @POST(ApiConstants.signUp)
    Future<SignupResponse> signUp(@Body() SignupRequestBody signupRequestBody);
 
-    @POST(ApiConstants.verifyAccount)
+
+  @POST(ApiConstants.verifyAccount)
   Future<VerifyAccountResponse> verifyAccount(
     @Body() VerifyAccountRequestBody verifyAccountRequestBody,
     @Header('Authorization') String token,
+  );
+
+   @POST(ApiConstants.forgetPassword)
+  Future<ForgetPassResponse> forgetPassword(
+    @Body() ForgetPassEmailRequestBody forgetPassEmailRequestBody,
+  );
+
+
+   @POST(ApiConstants.verifyPassword)
+  Future<VerifyPasswordResponse> verifyPassword(
+    @Body() VerifyPasswordRequestBody verifyPasswordRequestBody,
+    @Header('Authorization') String token,
+  );
+
+   @PUT(ApiConstants.resetPassword)
+  Future<CreateNewPasswordResponse> createNewPassword(
+    @Header('Authorization') String token,
+    @Body() CreateNewPasswordRequestBody createNewPasswordRequestBody,
   );
 }

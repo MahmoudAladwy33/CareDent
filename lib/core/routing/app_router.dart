@@ -1,9 +1,12 @@
 import 'package:caredent/core/di/service_locator.dart';
-import 'package:caredent/features/login/logic/cubit/login_cubit.dart';
+import 'package:caredent/features/login/logic/create_new_password_cubit/create_new_password_cubit.dart';
+import 'package:caredent/features/login/logic/forget_pass_cubit/forget_password_cubit.dart';
+import 'package:caredent/features/login/logic/login_cubit/login_cubit.dart';
+import 'package:caredent/features/login/logic/verify_pass_cubit/verify_password_cubit.dart';
 import 'package:caredent/features/login/login_screen.dart';
-import 'package:caredent/features/login/ui/widgets/forget_password/create_new_password_screen_body.dart';
-import 'package:caredent/features/login/ui/widgets/forget_password/forget_password_screen_body.dart';
-import 'package:caredent/features/login/ui/widgets/forget_password/otp_screen.dart';
+import 'package:caredent/features/login/ui/widgets/forget_password/new_password/create_new_password_screen_body.dart';
+import 'package:caredent/features/login/ui/widgets/forget_password/forget_password/forget_password_screen_body.dart';
+import 'package:caredent/features/login/ui/widgets/forget_password/verify_password/otp_screen.dart';
 import 'package:caredent/features/onboarding/on_boarding_screen.dart';
 import 'package:caredent/features/sign_up/logic/sign_up_cubit/sign_up_cubit.dart';
 import 'package:caredent/features/sign_up/logic/verify_account_cubit/verify_account_cubit.dart';
@@ -71,19 +74,32 @@ abstract class AppRouter {
       GoRoute(
         path: kForgetPassword,
         builder: (context, state) {
-          return const ForgetPasswordScreenBody();
+          return BlocProvider(
+            create: (context) => getIt<ForgetPasswordCubit>(),
+            child: const ForgetPasswordScreenBody(),
+          );
         },
       ),
       GoRoute(
         path: kOtpScreen,
         builder: (context, state) {
-          return const OtpScreen();
+          final forgetPasswordCubit = state.extra as ForgetPasswordCubit;
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => getIt<VerifyPasswordCubit>()),
+              BlocProvider.value(value: forgetPasswordCubit),
+            ],
+            child: const OtpScreen(),
+          );
         },
       ),
       GoRoute(
         path: kCreateNewPassword,
         builder: (context, state) {
-          return const CreateNewPasswordScreenBody();
+          return BlocProvider(
+            create: (context) => getIt<CreateNewPasswordCubit>(),
+            child: const CreateNewPasswordScreenBody(),
+          );
         },
       ),
       GoRoute(
@@ -91,14 +107,12 @@ abstract class AppRouter {
         builder: (context, state) {
           return MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => getIt<VerifyAccountCubit>(),
-              ),
-              BlocProvider.value(
-                value: state.extra as SignUpCubit,
-              ),
+              BlocProvider(create: (context) => getIt<VerifyAccountCubit>()),
+              BlocProvider.value(value: state.extra as SignUpCubit),
             ],
-           
-          child: const VerifyAccountScreenBody());
+
+            child: const VerifyAccountScreenBody(),
+          );
         },
       ),
     ],

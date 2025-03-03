@@ -1,18 +1,21 @@
-import 'package:caredent/core/networking/api_error_model.dart';
-import 'package:caredent/core/theme/colors_manager.dart';
-import 'package:caredent/core/theme/text_styless.dart';
-import 'package:caredent/features/login/logic/login_cubit/login_cubit.dart';
-import 'package:caredent/features/login/logic/login_cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
-class LoginBlocListener extends StatelessWidget {
-  const LoginBlocListener({super.key});
+import '../../../../../../core/networking/api_error_model.dart';
+import '../../../../../../core/routing/app_router.dart';
+import '../../../../../../core/theme/colors_manager.dart';
+import '../../../../../../core/theme/text_styless.dart';
+import '../../../../logic/verify_pass_cubit/verify_password_cubit.dart';
+import '../../../../logic/verify_pass_cubit/verify_password_state.dart';
+
+class VerifyPassBlocListner extends StatelessWidget {
+  const VerifyPassBlocListner({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<VerifyPasswordCubit, VerifyPasswordState>(
       listenWhen:
           (previous, current) =>
               current is Loading || current is Success || current is Error,
@@ -23,22 +26,16 @@ class LoginBlocListener extends StatelessWidget {
               context: context,
               barrierDismissible: false,
               builder:
-                  (context) => Center(
+                  (context) => const Center(
                     child: CircularProgressIndicator(
                       color: ColorsManager.mainBlue,
                     ),
                   ),
             );
           },
-          success: (loginResponse) {
-            if (Navigator.canPop(context)) {
-              Navigator.of(context, rootNavigator: true).pop();
-            }
-            // final userName = loginResponse.userData?.firstName ?? 'User';
-            // SharedPreferences.getInstance().then((prefs) {
-            //   prefs.setString('userName', userName);
-            // });
-            //  GoRouter.of(context).go(AppRouter.kHomeScreen, extra: userName);
+          success: (verifyPasswordResponse) {
+            Navigator.of(context).pop();
+            GoRouter.of(context).push(AppRouter.kCreateNewPassword);
           },
           error: (apiErrorModel) {
             if (Navigator.canPop(context)) {

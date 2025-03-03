@@ -34,8 +34,13 @@ class VerifyAccountBlocListner extends StatelessWidget {
             );
           },
           success: (verifyAccountResponse) {
-            Navigator.of(context).pop();
-            GoRouter.of(context).push(AppRouter.kLoginScreen);
+            if (Navigator.canPop(context)) {
+              Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pop(); // Close loading dialog
+            }
+            setupSuccessState(context);
           },
           error: (apiErrorModel) {
             if (Navigator.canPop(context)) {
@@ -91,6 +96,56 @@ class VerifyAccountBlocListner extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 17.sp,
                     color: Colors.red,
+                  ),
+                ),
+              ),
+            ],
+          ),
+    );
+  }
+
+  void setupSuccessState(BuildContext context) {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            title: Row(
+              children: [
+                Icon(Icons.check_circle_outline, color: Colors.green, size: 28),
+                const SizedBox(width: 8),
+                Text(
+                  "Success",
+                  style: TextStyles.font24DarkBlueExtraBold.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Your account has been created successfully",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  GoRouter.of(context).go(AppRouter.kLoginScreen);
+                },
+                child: Text(
+                  "Got it",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 17.sp,
+                    color: Colors.green,
                   ),
                 ),
               ),
