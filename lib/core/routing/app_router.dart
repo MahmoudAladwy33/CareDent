@@ -5,9 +5,11 @@ import 'package:caredent/features/login/ui/widgets/forget_password/create_new_pa
 import 'package:caredent/features/login/ui/widgets/forget_password/forget_password_screen_body.dart';
 import 'package:caredent/features/login/ui/widgets/forget_password/otp_screen.dart';
 import 'package:caredent/features/onboarding/on_boarding_screen.dart';
+import 'package:caredent/features/sign_up/logic/sign_up_cubit/sign_up_cubit.dart';
+import 'package:caredent/features/sign_up/logic/verify_account_cubit/verify_account_cubit.dart';
 import 'package:caredent/features/sign_up/ui/sign_up_screen.dart';
-import 'package:caredent/features/sign_up/ui/widgets/create_account_screen_body.dart';
-import 'package:caredent/features/sign_up/ui/widgets/verify_account_screen_body.dart';
+import 'package:caredent/features/sign_up/ui/widgets/sign_up/create_account_screen_body.dart';
+import 'package:caredent/features/sign_up/ui/widgets/verify_account/verify_account_screen_body.dart';
 import 'package:caredent/features/splash_view/splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -49,14 +51,21 @@ abstract class AppRouter {
       GoRoute(
         path: kSignUpScreen,
         builder: (context, state) {
-          return const SignUpScreen();
+          return BlocProvider(
+            create: (context) => getIt<SignUpCubit>(),
+            child: const SignUpScreen(),
+          );
         },
       ),
 
       GoRoute(
         path: kCreateAccount,
         builder: (context, state) {
-          return const CreateAccountScreenBody();
+          final signUpCubit = state.extra as SignUpCubit;
+          return BlocProvider.value(
+            value: signUpCubit,
+            child: const CreateAccountScreenBody(),
+          );
         },
       ),
       GoRoute(
@@ -80,7 +89,16 @@ abstract class AppRouter {
       GoRoute(
         path: kVerifyAccount,
         builder: (context, state) {
-          return const VerifyAccountScreenBody();
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => getIt<VerifyAccountCubit>(),
+              ),
+              BlocProvider.value(
+                value: state.extra as SignUpCubit,
+              ),
+            ],
+           
+          child: const VerifyAccountScreenBody());
         },
       ),
     ],

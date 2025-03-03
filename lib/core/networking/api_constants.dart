@@ -1,8 +1,9 @@
 class ApiConstants {
   static const String apiBaseUrl = "https://caredent.vercel.app/";
   static const String login = "auth/login";
+  static const String signUp = "auth/signup";
+  static const String verifyAccount = "auth/verifyEmailUser";
 }
-
 
 class ApiErrors {
   static const String badRequestError = "Bad Request Error";

@@ -1,16 +1,33 @@
+import 'package:caredent/core/theme/colors_manager.dart';
 import 'package:caredent/core/theme/text_styless.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DateOfBirthField extends StatefulWidget {
-  const DateOfBirthField({super.key});
+  final TextEditingController? controller;
+
+  const DateOfBirthField({super.key, this.controller});
 
   @override
   DateOfBirthFieldState createState() => DateOfBirthFieldState();
 }
 
 class DateOfBirthFieldState extends State<DateOfBirthField> {
-  TextEditingController dateController = TextEditingController();
+  late TextEditingController dateController;
+
+  @override
+  void initState() {
+    super.initState();
+    dateController = widget.controller ?? TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    if (widget.controller == null) {
+      dateController.dispose();
+    }
+    super.dispose();
+  }
 
   Future<void> _selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
@@ -41,18 +58,32 @@ class DateOfBirthFieldState extends State<DateOfBirthField> {
             ],
           ),
           SizedBox(height: 8.h),
-          TextField(
+          TextFormField(
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Date of birth is required';
+              }
+              return null;
+            },
             controller: dateController,
             readOnly: true,
             onTap: () => _selectDate(context),
             decoration: InputDecoration(
               filled: true,
-              fillColor: Color(0xffe5e9ef),
+              fillColor: const Color(0xffe5e9ef),
               hintText: "DD/MM/YYYY",
               hintStyle: TextStyles.font14GrayRegular,
-              border: OutlineInputBorder(
+              enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide.none,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: ColorsManager.mainBlue),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: Colors.red),
               ),
               contentPadding: EdgeInsets.symmetric(
                 horizontal: 16.w,

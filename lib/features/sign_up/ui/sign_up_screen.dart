@@ -1,4 +1,4 @@
-import 'package:caredent/features/sign_up/ui/widgets/sign_up_screen_body.dart';
+import 'package:caredent/features/sign_up/ui/widgets/sign_up/sign_up_screen_body.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatelessWidget {
