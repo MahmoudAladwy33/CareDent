@@ -2,6 +2,7 @@ import 'package:caredent/core/theme/colors_manager.dart';
 import 'package:caredent/core/theme/text_styless.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart'; // استيراد مكتبة intl لتنسيق التاريخ
 
 class DateOfBirthField extends StatefulWidget {
   final TextEditingController? controller;
@@ -38,7 +39,7 @@ class DateOfBirthFieldState extends State<DateOfBirthField> {
     );
     if (picked != null) {
       setState(() {
-        dateController.text = "${picked.day}/${picked.month}/${picked.year}";
+        dateController.text = DateFormat('yyyy-MM-dd').format(picked);
       });
     }
   }
@@ -71,7 +72,7 @@ class DateOfBirthFieldState extends State<DateOfBirthField> {
             decoration: InputDecoration(
               filled: true,
               fillColor: const Color(0xffe5e9ef),
-              hintText: "DD/MM/YYYY",
+              hintText: "YYYY-MM-DD",
               hintStyle: TextStyles.font14GrayRegular,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),

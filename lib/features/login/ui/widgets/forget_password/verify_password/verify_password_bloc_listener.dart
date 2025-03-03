@@ -60,6 +60,7 @@ class VerifyPassBlocListner extends StatelessWidget {
       context: context,
       builder:
           (context) => AlertDialog(
+            backgroundColor: ColorsManager.lightGray,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
