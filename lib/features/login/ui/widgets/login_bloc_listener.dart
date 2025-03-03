@@ -1,4 +1,5 @@
 import 'package:caredent/core/networking/api_error_model.dart';
+import 'package:caredent/core/routing/app_router.dart';
 import 'package:caredent/core/theme/colors_manager.dart';
 import 'package:caredent/core/theme/text_styless.dart';
 import 'package:caredent/features/login/logic/login_cubit/login_cubit.dart';
@@ -6,6 +7,7 @@ import 'package:caredent/features/login/logic/login_cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginBlocListener extends StatelessWidget {
   const LoginBlocListener({super.key});
@@ -39,6 +41,7 @@ class LoginBlocListener extends StatelessWidget {
             //   prefs.setString('userName', userName);
             // });
             //  GoRouter.of(context).go(AppRouter.kHomeScreen, extra: userName);
+            GoRouter.of(context).go(AppRouter.kHomeScreen);
           },
           error: (apiErrorModel) {
             if (Navigator.canPop(context)) {

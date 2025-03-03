@@ -1,4 +1,5 @@
 import 'package:caredent/core/di/service_locator.dart';
+import 'package:caredent/features/home/home_screen.dart';
 import 'package:caredent/features/login/logic/create_new_password_cubit/create_new_password_cubit.dart';
 import 'package:caredent/features/login/logic/forget_pass_cubit/forget_password_cubit.dart';
 import 'package:caredent/features/login/logic/login_cubit/login_cubit.dart';
@@ -26,6 +27,7 @@ abstract class AppRouter {
   static const kOtpScreen = '/otpScreen';
   static const kCreateNewPassword = '/create-new-password';
   static const kVerifyAccount = '/verify-account';
+  static const kHomeScreen = '/home';
 
   static final router = GoRouter(
     routes: [
@@ -113,6 +115,12 @@ abstract class AppRouter {
 
             child: const VerifyAccountScreenBody(),
           );
+        },
+      ),
+      GoRoute(
+        path: kHomeScreen,
+        builder: (context, state) {
+          return const HomeScreen();
         },
       ),
     ],
