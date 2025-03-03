@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/theme/text_styless.dart';
+import '../../../../core/theme/text_styless.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({super.key});

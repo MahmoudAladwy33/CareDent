@@ -1,5 +1,5 @@
 import 'package:caredent/core/theme/text_styless.dart';
-import 'package:caredent/features/login/ui/widgets/forget_password/didn%E2%80%99t_receive_the_code.dart';
+import 'package:caredent/features/sign_up/ui/widgets/verify_account/didn%E2%80%99t_receive_the_code.dart';
 import 'package:caredent/features/sign_up/ui/widgets/verify_account/verify_account_bloc_listener.dart';
 import 'package:caredent/features/sign_up/ui/widgets/verify_account/verify_account_bustton.dart';
 import 'package:caredent/features/sign_up/ui/widgets/verify_account/verify_account_opt_code.dart';
