@@ -22,7 +22,7 @@ class VerifyAccountScreenBody extends StatelessWidget {
               subTitle:
                   'Enter the 6-digit code we just sent on\n               your email address',
             ),
-            SizedBox(height: 18.h),
+            SizedBox(height: 35.h),
             VerifyAccountOptCode(
               controller: context.read<VerifyAccountCubit>().otpField,
             ),
