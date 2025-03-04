@@ -1,4 +1,3 @@
-import 'package:caredent/core/widgets/custom_app_bar.dart';
 import 'package:caredent/features/login/ui/widgets/forget_password/verify_password/didnt_recive_forget_pass_code.dart';
 import 'package:caredent/features/login/ui/widgets/forget_password/verify_password/otp_field.dart';
 import 'package:caredent/features/login/ui/widgets/forget_password/verify_password/send_verification_code_button.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../core/widgets/custom_big_app_bar.dart';
 import '../../../../logic/verify_pass_cubit/verify_password_cubit.dart';
 
 class OtpScreen extends StatelessWidget {
@@ -18,11 +18,12 @@ class OtpScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(
+            CustomBigAppBar(
               title: 'OTP Verification',
-              subTitle: 'Enter the verification code',
+              subTitle:
+                  'Enter the verification code we just sent on\n                  your email address',
             ),
-            SizedBox(height: 28.h),
+            SizedBox(height: 35.h),
             OtpField(controller: context.read<VerifyPasswordCubit>().otpField),
             SizedBox(height: 24.h),
             SendVerificationCodebutton(

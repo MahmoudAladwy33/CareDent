@@ -36,6 +36,21 @@ class DateOfBirthFieldState extends State<DateOfBirthField> {
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: ColorsManager.mainBlue,
+            hintColor: ColorsManager.mainBlue,
+            colorScheme: ColorScheme.light(
+              primary: ColorsManager.mainBlue,
+              onPrimary: Colors.white,
+              onSurface: Colors.black,
+            ),
+            buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
+          ),
+          child: child!,
+        );
+      },
     );
     if (picked != null) {
       setState(() {

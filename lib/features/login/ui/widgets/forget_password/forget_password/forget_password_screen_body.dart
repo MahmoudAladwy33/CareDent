@@ -1,4 +1,4 @@
-import 'package:caredent/core/widgets/custom_app_bar.dart';
+import 'package:caredent/core/widgets/custom_big_app_bar.dart';
 import 'package:caredent/features/login/ui/widgets/forget_password/forget_password/forget_pass_bloc_listner.dart';
 import 'package:caredent/features/login/ui/widgets/forget_password/forget_password/forget_password_email.dart';
 import 'package:caredent/features/login/ui/widgets/forget_password/forget_password/remember_password.dart';
@@ -18,9 +18,10 @@ class ForgetPasswordScreenBody extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(
+            CustomBigAppBar(
               title: 'Forget Password?',
-              subTitle: 'Please enter your email address',
+              subTitle:
+                  'Please enter the email address linked\n               with your account',
             ),
             SizedBox(height: 18.h),
             ForgetPasswordEmail(),

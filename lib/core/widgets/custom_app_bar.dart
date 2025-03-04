@@ -19,7 +19,7 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(AppImages.signUpAppBar, width: double.infinity),
+        Image.asset(AppImages.signUpAppBarGradient, width: double.infinity),
         Padding(
           padding: EdgeInsets.only(top: 40.h),
           child: Center(

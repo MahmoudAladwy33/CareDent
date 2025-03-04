@@ -10,4 +10,6 @@ class AppImages {
       'assets/images/on_boarding_third_screen.png';
   static const loginAppBar = 'assets/images/login_app_bar.png';
   static const signUpAppBar = 'assets/images/sign_up_app_bar.png';
+  static const signUpAppBarGradient = 'assets/images/sign_up_app_bar_grd.png';
+  static const loginAppBarGradient = 'assets/images/login_app_bar_grd.png';
 }

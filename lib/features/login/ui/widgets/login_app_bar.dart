@@ -11,7 +11,7 @@ class LoginAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(AppImages.loginAppBar, width: double.infinity),
+        Image.asset(AppImages.loginAppBarGradient, width: double.infinity),
         Padding(
           padding: EdgeInsets.only(top: 180.h),
           child: Center(
@@ -20,7 +20,7 @@ class LoginAppBar extends StatelessWidget {
                 Text('Welcome Back', style: TextStyles.font30WhiteSemiBold),
                 SizedBox(height: 3.w),
                 Text(
-                  ' please complete the following',
+                  'please complete the following',
                   style: TextStyles.font15WhiteRegular,
                 ),
               ],

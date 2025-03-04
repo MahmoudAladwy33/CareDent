@@ -17,14 +17,21 @@ class CustomButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF2A78F6), Color(0xFF004AAD)],
+          gradient: const LinearGradient(
+            colors: [
+              Color(0xFF0072FF), // الأزرق الفاتح
+              Color(0xFF001E4D), // الأزرق الداكن
+            ],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
           borderRadius: BorderRadius.circular(30),
+          border: Border.all(
+            color: Colors.blueAccent,
+            width: 1,
+          ), 
           boxShadow: [
             BoxShadow(
               color: Colors.black26,

@@ -1,4 +1,3 @@
-import 'package:caredent/core/theme/text_styless.dart';
 import 'package:caredent/features/sign_up/ui/widgets/verify_account/didn%E2%80%99t_receive_the_code.dart';
 import 'package:caredent/features/sign_up/ui/widgets/verify_account/verify_account_bloc_listener.dart';
 import 'package:caredent/features/sign_up/ui/widgets/verify_account/verify_account_bustton.dart';
@@ -6,7 +5,7 @@ import 'package:caredent/features/sign_up/ui/widgets/verify_account/verify_accou
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/widgets/custom_app_bar.dart';
+import '../../../../../core/widgets/custom_big_app_bar.dart';
 import '../../../logic/verify_account_cubit/verify_account_cubit.dart';
 
 class VerifyAccountScreenBody extends StatelessWidget {
@@ -18,12 +17,10 @@ class VerifyAccountScreenBody extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(
+            CustomBigAppBar(
               title: 'Verify Your Account',
-              subTitle: 'Please enter the verification code',
-              textStyle: TextStyles.font30WhiteSemiBold.copyWith(
-                fontSize: 25.sp,
-              ),
+              subTitle:
+                  'Enter the 6-digit code we just sent on\n               your email address',
             ),
             SizedBox(height: 18.h),
             VerifyAccountOptCode(
