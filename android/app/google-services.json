@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "170277646403",
+    "project_id": "caredent-17ff4",
+    "storage_bucket": "caredent-17ff4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170277646403:android:89f46a5188edca41d7a4f6",
+        "android_client_info": {
+          "package_name": "com.example.caredent"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYiajTyF6c9KNCKQF3IkhGMPRctAwArj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
