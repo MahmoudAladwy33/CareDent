@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,20 +7,19 @@ import '../../../../../core/theme/text_styless.dart';
 import '../../../logic/sign_up_cubit/sign_up_cubit.dart';
 import '../../../logic/sign_up_cubit/sign_up_state.dart';
 
-class GenderSelection extends StatefulWidget {
-  const GenderSelection({super.key});
+class RoleSelection extends StatefulWidget {
+  const RoleSelection({super.key});
 
   @override
-  State<GenderSelection> createState() => _GenderSelectionState();
+  State<RoleSelection> createState() => _RoleSelectionState();
 }
 
-class _GenderSelectionState extends State<GenderSelection> {
+class _RoleSelectionState extends State<RoleSelection> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpCubit, SignUpState>(
       builder: (context, state) {
-        final selectedGender =
-            context.read<SignUpCubit>().genderController.text;
+        final selectedRole = context.read<SignUpCubit>().roleController.text;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,9 +28,12 @@ class _GenderSelectionState extends State<GenderSelection> {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Row(
                 children: [
-                  const Icon(Icons.wc_rounded, size: 20),
+                  const Icon(Icons.manage_accounts, size: 20),
                   SizedBox(width: 8.w),
-                  Text("Gender", style: TextStyles.font16DarkBlueMedieum),
+                  Text(
+                    "Select your Role",
+                    style: TextStyles.font16DarkBlueMedieum,
+                  ),
                 ],
               ),
             ),
@@ -38,13 +41,18 @@ class _GenderSelectionState extends State<GenderSelection> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildGenderButton(context, "Male", Icons.male, selectedGender),
-                SizedBox(width: 20.w),
-                _buildGenderButton(
+                _buildRoleButton(
                   context,
-                  "Female",
-                  Icons.female,
-                  selectedGender,
+                  "Student",
+                  Icons.school,
+                  selectedRole,
+                ),
+                SizedBox(width: 20.w),
+                _buildRoleButton(
+                  context,
+                  "Patient",
+                  Icons.local_hospital,
+                  selectedRole,
                 ),
               ],
             ),
@@ -54,13 +62,14 @@ class _GenderSelectionState extends State<GenderSelection> {
     );
   }
 
-  Widget _buildGenderButton(
+  Widget _buildRoleButton(
     BuildContext context,
-    String gender,
+    String role,
     IconData icon,
-    String selectedGender,
+    String selectedRole,
   ) {
-    bool isSelected = selectedGender == gender;
+    bool isSelected =
+        (role == "Patient" && selectedRole == "user") || (selectedRole == role);
 
     return SizedBox(
       width: 130.w,
@@ -80,7 +89,9 @@ class _GenderSelectionState extends State<GenderSelection> {
                   : const Color(0xffe5e9ef),
         ),
         onPressed: () {
-          context.read<SignUpCubit>().updateGender(gender);
+          context.read<SignUpCubit>().updateRole(
+            role == "Patient" ? "user" : role,
+          );
           setState(() {});
         },
         child: Row(
@@ -88,7 +99,7 @@ class _GenderSelectionState extends State<GenderSelection> {
             Icon(icon, color: isSelected ? Colors.blue : Colors.grey),
             SizedBox(width: 8.w),
             Text(
-              gender,
+              role,
               style: TextStyle(
                 color: isSelected ? Colors.blue : Colors.grey,
                 fontSize: 16.sp,

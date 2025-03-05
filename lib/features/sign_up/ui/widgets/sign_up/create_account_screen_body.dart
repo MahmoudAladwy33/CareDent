@@ -3,6 +3,7 @@ import 'package:caredent/features/sign_up/ui/widgets/sign_up/create_account_butt
 import 'package:caredent/features/sign_up/ui/widgets/sign_up/date_of_bairth.dart';
 import 'package:caredent/features/sign_up/ui/widgets/sign_up/gender_selection.dart';
 import 'package:caredent/features/sign_up/ui/widgets/sign_up/health_record.dart';
+import 'package:caredent/features/sign_up/ui/widgets/sign_up/role_selection.dart';
 import 'package:caredent/features/sign_up/ui/widgets/sign_up/sign_up_app_bar.dart';
 import 'package:caredent/features/sign_up/ui/widgets/sign_up/sign_up_bloc_listner.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,8 @@ class CreateAccountScreenBody extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               SignUpAppBar(),
+              SizedBox(height: 18.h),
+              RoleSelection(),
               SizedBox(height: 18.h),
               GenderSelection(),
               SizedBox(height: 18.h),

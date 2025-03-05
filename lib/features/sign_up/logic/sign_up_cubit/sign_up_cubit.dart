@@ -19,6 +19,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   TextEditingController passwordConfirmController = TextEditingController();
   TextEditingController dateOfBirthController = TextEditingController();
   TextEditingController genderController = TextEditingController();
+  TextEditingController roleController = TextEditingController();
   TextEditingController healthRecordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
@@ -70,7 +71,12 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   void updateGender(String gender) {
     genderController.text = gender;
-    emit(SignUpState.initial()); 
+    emit(SignUpState.initial());
+  }
+
+  void updateRole(String role) {
+    roleController.text = role;
+    emit(SignUpState.initial());
   }
 
   void emitSignupStates() async {
@@ -87,6 +93,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         passwordConfirm: passwordConfirmController.text,
         dateOfBirth: dateOfBirthController.text,
         gender: genderController.text,
+        role: roleController.text,
         healthRecord: healthRecordController.text,
       ),
     );
