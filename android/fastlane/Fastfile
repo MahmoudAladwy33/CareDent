@@ -14,7 +14,7 @@ platform :android do
         android_artifact_type: "APK",
         android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
         testers: "aladwymahmoud@gmail.com,Sheryesam12@gmail.com",
-        release_notes: "final test",
+        release_notes: "added role selection on sign up screen",
   )
   end
 end
