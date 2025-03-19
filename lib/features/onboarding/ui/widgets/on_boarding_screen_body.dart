@@ -5,6 +5,8 @@ import 'package:caredent/features/onboarding/ui/widgets/on_boarding_third_screen
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/helper/shared_pref_helper.dart';
+
 class OnBoardingScreenBody extends StatefulWidget {
   const OnBoardingScreenBody({super.key});
 
@@ -15,8 +17,9 @@ class OnBoardingScreenBody extends StatefulWidget {
 class _OnBoardingScreenBodyState extends State<OnBoardingScreenBody> {
   final PageController _pageController = PageController();
 
-  void _nextPage() {
+  void _nextPage()async {
     if (_pageController.page == 2) {
+       await SharedPrefHelper.setData('seen_onboarding', true);
       GoRouter.of(context).push(AppRouter.kLoginScreen);
     } else {
       _pageController.nextPage(
@@ -33,7 +36,8 @@ class _OnBoardingScreenBodyState extends State<OnBoardingScreenBody> {
     );
   }
 
-  void _skip() {
+  void _skip()async {
+     await SharedPrefHelper.setData('seen_onboarding', true);
     GoRouter.of(context).push(AppRouter.kLoginScreen);
   }
 

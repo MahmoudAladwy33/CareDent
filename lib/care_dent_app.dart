@@ -25,6 +25,11 @@ class CareDent extends StatelessWidget {
           primaryColor: ColorsManager.mainBlue,
           scaffoldBackgroundColor: Colors.white,
           textTheme: GoogleFonts.poppinsTextTheme(),
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: ColorsManager.mainBlue,
+            selectionColor: ColorsManager.mainBlue.withOpacity(0.3),
+            selectionHandleColor: ColorsManager.mainBlue,
+          ),
         ),
         debugShowCheckedModeBanner: false,
       ),
