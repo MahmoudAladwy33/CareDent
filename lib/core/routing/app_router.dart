@@ -1,5 +1,5 @@
 import 'package:caredent/core/di/service_locator.dart';
-import 'package:caredent/features/home/home_screen.dart';
+import 'package:caredent/features/home/ui/home_screen.dart';
 import 'package:caredent/features/login/logic/create_new_password_cubit/create_new_password_cubit.dart';
 import 'package:caredent/features/login/logic/forget_pass_cubit/forget_password_cubit.dart';
 import 'package:caredent/features/login/logic/login_cubit/login_cubit.dart';
