@@ -21,33 +21,21 @@ class CustomBottomNavigationBar extends StatelessWidget {
       child: CurvedNavigationBar(
         index: currentIndex,
         animationDuration: const Duration(milliseconds: 400),
-        backgroundColor: Colors.white,
-        color: const Color(0xff025abb),
-        onTap: onTap, // هنا بنمرر الفنكشن اللي بتغير الصفحة
+        backgroundColor: Colors.transparent,
+        color: const Color(0xff045fc9),
+        onTap: onTap,
         items: [
-          SvgPicture.asset(
-            AppImages.navigationBarHome,
-            width: 28,
-            height: 28,
-            color: Colors.white,
-          ),
-          Image.asset(
-            AppImages.navigationBarCheckList,
-            width: 28,
-            height: 28,
-            color: Colors.white,
-          ),
+          SvgPicture.asset(AppImages.navigationBarHome, width: 28, height: 28),
+          Image.asset(AppImages.navigationBarCheckList, width: 28, height: 28),
           SvgPicture.asset(
             AppImages.navigationBarProfile,
             width: 28,
             height: 28,
-            color: Colors.white,
           ),
           SvgPicture.asset(
             AppImages.navigationBarSettings,
             width: 28,
             height: 28,
-            color: Colors.white,
           ),
         ],
       ),

@@ -67,6 +67,7 @@ class TextStyles {
     color: ColorsManager.darkBlue,
     fontFamily: 'Poppins',
   );
+  
 
   static TextStyle font15MainBlueBold = TextStyle(
     fontSize: 15.sp,

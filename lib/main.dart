@@ -7,6 +7,5 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   setupGetIt();
-  runApp(const CareDent());
-  // DevicePreview(enabled: true, builder: (context) =>
+  runApp(DevicePreview(enabled: true, builder: (context) => const CareDent()));
 }
