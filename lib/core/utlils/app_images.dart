@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class AppImages {
   static const String splashViewBackground =
@@ -18,4 +17,14 @@ class AppImages {
   static const navigationBarCheckList = 'assets/images/check.png';
   static const navigationBarProfile = 'assets/images/profile.svg';
   static const navigationBarSettings = 'assets/images/settings.svg';
+  static const homeAppBarBackground =
+      'assets/images/home_app_bar_background.png';
+  static const homeProfilePic = 'assets/images/home_profile_pic.png';
+  static const serviceCardToothExtraction =
+      'assets/images/Tooth_extraction.png';
+  static const serviceCardToothFilling = 'assets/images/dental filling.png';
+  static const serviceCardToothBraces = 'assets/images/braces.png';
+  static const serviceCardToothPolishing = 'assets/images/polishing.png';
+  static const serviceCardToothRoot = 'assets/images/root_canal.png';
+  static const serviceCardToothVeneers = 'assets/images/veneers.png';
 }
