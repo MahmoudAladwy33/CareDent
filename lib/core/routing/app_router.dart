@@ -1,4 +1,5 @@
 import 'package:caredent/core/di/service_locator.dart';
+import 'package:caredent/features/book_appointment/ui/widgets/book_appointment_screen.dart';
 import 'package:caredent/features/home/ui/home_screen.dart';
 import 'package:caredent/features/login/logic/create_new_password_cubit/create_new_password_cubit.dart';
 import 'package:caredent/features/login/logic/forget_pass_cubit/forget_password_cubit.dart';
@@ -18,6 +19,8 @@ import 'package:caredent/features/splash_view/splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/home/data/models/service_card_model.dart';
+
 abstract class AppRouter {
   static const kOnBoardingScreen = '/onboarding';
   static const kLoginScreen = '/login';
@@ -28,6 +31,7 @@ abstract class AppRouter {
   static const kCreateNewPassword = '/create-new-password';
   static const kVerifyAccount = '/verify-account';
   static const kHomeScreen = '/home';
+  static const kBookAppointment = '/book-appointment';
 
   static final router = GoRouter(
     routes: [
@@ -121,6 +125,13 @@ abstract class AppRouter {
         path: kHomeScreen,
         builder: (context, state) {
           return const HomeScreen();
+        },
+      ),
+      GoRoute(
+        path: kBookAppointment,
+        builder: (context, state) {
+          final serviceCardModel = state.extra as ServiceCardModel;
+          return BookAppointmentScreen(serviceCardModel: serviceCardModel);
         },
       ),
     ],

@@ -67,12 +67,18 @@ class TextStyles {
     color: ColorsManager.darkBlue,
     fontFamily: 'Poppins',
   );
-  
 
   static TextStyle font15MainBlueBold = TextStyle(
     fontSize: 15.sp,
     fontWeight: FontWeightHelper.bold,
     color: ColorsManager.mainBlue,
+    fontFamily: 'Poppins',
+  );
+
+  static TextStyle font18DarkBlueSemiBold = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManager.darkBlue,
     fontFamily: 'Poppins',
   );
 }

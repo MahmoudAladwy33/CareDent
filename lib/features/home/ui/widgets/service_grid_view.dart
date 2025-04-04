@@ -12,31 +12,61 @@ class ServiceGridView extends StatelessWidget {
       image: AppImages.serviceCardToothExtraction,
       title1: 'Tooth',
       title2: 'Extraction',
+      appointmentImage: AppImages.bookAppointmentToothExtraction,
+      appointmentTitle: 'Tooth Extraction',
+      appointmentSubtitle: 'Need To Remove A Damaged Tooth?',
+      appointmentBody:
+          'Our Expert Dentists Ensure A Painless   And Safe Extraction Process. Book Your Appointment Now!',
     ),
     ServiceCardModel(
       image: AppImages.serviceCardToothVeneers,
       title1: 'Veneers',
       title2: "",
+      appointmentImage: AppImages.bookAppointmentToothVeneers,
+      appointmentTitle: 'Veneers',
+      appointmentSubtitle: 'Transform Your Smile With High-Quality Veneers',
+      appointmentBody:
+          'Achieve A Natural, Bright, And Flawless Look With Our Professional Dental Care',
     ),
     ServiceCardModel(
       image: AppImages.serviceCardToothRoot,
       title1: 'Root Canal',
       title2: 'Treatment',
+      appointmentImage: AppImages.bookAppointmentToothRoot,
+      appointmentTitle: 'Root Canal Treatment',
+      appointmentSubtitle: 'Save Your Natural Tooth',
+      appointmentBody:
+          'With A Painless Root Canal Treatment.   Our Specialists Provide Effective Care To Relieve Pain And Restore Your Tooth’s Health.',
     ),
     ServiceCardModel(
       image: AppImages.serviceCardToothFilling,
       title1: 'Dental',
       title2: 'Filling',
+      appointmentImage: AppImages.bookAppointmentToothFilling,
+      appointmentTitle: 'Dental Filling',
+      appointmentSubtitle: 'Got A Cavity?',
+      appointmentBody:
+          'Our Safe And Durable Dental Fillings Restore Your Tooth’s Strength And Appearance. Book Your Appointment Today!',
     ),
     ServiceCardModel(
       image: AppImages.serviceCardToothPolishing,
       title1: 'Scaling&',
       title2: 'Polishing',
+      appointmentImage: AppImages.bookAppointmentToothPolishing,
+      appointmentTitle: 'Scaling & Polishing',
+      appointmentSubtitle: 'Maintain A Healthy And Bright Smile',
+      appointmentBody:
+          'With Professional Teeth Cleaning. Our Scaling & Polishing Treatment Removes Plaque And Stains For A Fresh Loo',
     ),
     ServiceCardModel(
       image: AppImages.serviceCardToothBraces,
       title1: 'Orthodontics',
       title2: '(Braces)',
+      appointmentImage: AppImages.bookAppointmentToothBraces,
+      appointmentTitle: 'Orthodontics (Braces)',
+      appointmentSubtitle: 'Enhance Your Smile',
+      appointmentBody:
+          'Straighten Your Teeth With Advanced Orthodontic Treatments. Get Started On Your Journey To A Perfect Smile Today!',
     ),
   ];
   @override

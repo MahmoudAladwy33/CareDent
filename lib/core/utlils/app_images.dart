@@ -27,4 +27,16 @@ class AppImages {
   static const serviceCardToothPolishing = 'assets/images/polishing.png';
   static const serviceCardToothRoot = 'assets/images/root_canal.png';
   static const serviceCardToothVeneers = 'assets/images/veneers.png';
+  static const bookAppointmentToothExtraction =
+      'assets/images/book_appointment_tooth_extraction.png';
+  static const bookAppointmentToothFilling =
+      'assets/images/book_appointment_filling.png';
+  static const bookAppointmentToothBraces =
+      'assets/images/book_appointment_braces.png';
+  static const bookAppointmentToothPolishing =
+      'assets/images/book_appointment_scaling.png';
+  static const bookAppointmentToothRoot =
+      'assets/images/book_appointment_root.png';
+  static const bookAppointmentToothVeneers =
+      'assets/images/book_appointment_veneers.png';
 }
