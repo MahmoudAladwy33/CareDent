@@ -1,4 +1,5 @@
 import 'package:caredent/features/home/ui/widgets/home_screen_body.dart';
+import 'package:caredent/features/my_appointments/ui/my_appointments_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/custom_bottom_nav_bar.dart';
@@ -15,7 +16,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _screens = [
     HomeScreenBody(),
-    const Center(child: Text('Chat Screen')),
+    MyAppointmentsScreen(),
     const Center(child: Text('Settings Screen')),
     const Center(child: Text('Profile Screen')),
   ];
