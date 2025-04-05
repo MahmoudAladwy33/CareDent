@@ -6,6 +6,7 @@ class ServiceCardModel {
   final String appointmentTitle;
   final String appointmentSubtitle;
   final String appointmentBody;
+  final String type;
 
   const ServiceCardModel({
     required this.appointmentImage,
@@ -15,5 +16,6 @@ class ServiceCardModel {
     required this.title1,
     required this.title2,
     required this.appointmentBody,
+    required this.type,
   });
 }

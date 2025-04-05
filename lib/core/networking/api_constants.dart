@@ -6,6 +6,7 @@ class ApiConstants {
   static const String forgetPassword = "auth/forgetpass";
   static const String verifyPassword = "auth/verifycode";
   static const String resetPassword = "auth/resetpassword";
+  static const String createAppointment = "order";
 }
 
 class ApiErrors {

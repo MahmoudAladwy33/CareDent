@@ -1,3 +1,5 @@
+import 'package:caredent/features/book_appointment/data/repos/create_appoinment_repo.dart';
+import 'package:caredent/features/book_appointment/logic/cubit/create_appoinment_cubit.dart';
 import 'package:caredent/features/sign_up/data/repos/sign_up_repo.dart';
 import 'package:caredent/features/sign_up/logic/sign_up_cubit/sign_up_cubit.dart';
 import 'package:dio/dio.dart';
@@ -58,5 +60,13 @@ Future<void> setupGetIt() async {
   );
   getIt.registerFactory<CreateNewPasswordCubit>(
     () => CreateNewPasswordCubit(getIt()),
+  );
+
+  //create appointment
+  getIt.registerLazySingleton<CreateAppoinmentRepo>(
+    () => CreateAppoinmentRepo(getIt()),
+  );
+  getIt.registerFactory<CreateAppoinmentCubit>(
+    () => CreateAppoinmentCubit(getIt()),
   );
 }
