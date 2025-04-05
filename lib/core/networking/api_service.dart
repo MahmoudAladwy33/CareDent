@@ -10,6 +10,8 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
+import '../../features/book_appointment/data/models/create_appoinment_request_body.dart';
+import '../../features/book_appointment/data/models/create_appoinment_response.dart';
 import '../../features/login/data/models/create_new_password/create_new_password_request_body.dart';
 import '../../features/login/data/models/forget_password/forget_pass_email_request_body.dart';
 import '../../features/login/data/models/forget_password/forget_pass_response.dart';
@@ -50,5 +52,11 @@ abstract class ApiService {
   Future<CreateNewPasswordResponse> createNewPassword(
     @Header('Authorization') String token,
     @Body() CreateNewPasswordRequestBody createNewPasswordRequestBody,
+  );
+
+  @POST(ApiConstants.createAppointment)
+  Future<CreateAppoinmentResponse> createAppointment(
+    @Body() CreateAppoinmentRequestBody createAppoinmentRequestBody,
+    @Header('Authorization') String token,
   );
 }

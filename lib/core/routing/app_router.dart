@@ -1,4 +1,5 @@
 import 'package:caredent/core/di/service_locator.dart';
+import 'package:caredent/features/book_appointment/logic/cubit/create_appoinment_cubit.dart';
 import 'package:caredent/features/book_appointment/ui/widgets/book_appointment_screen.dart';
 import 'package:caredent/features/home/ui/home_screen.dart';
 import 'package:caredent/features/login/logic/create_new_password_cubit/create_new_password_cubit.dart';
@@ -131,7 +132,10 @@ abstract class AppRouter {
         path: kBookAppointment,
         builder: (context, state) {
           final serviceCardModel = state.extra as ServiceCardModel;
-          return BookAppointmentScreen(serviceCardModel: serviceCardModel);
+          return BlocProvider(
+            create: (context) => getIt<CreateAppoinmentCubit>(),
+            child: BookAppointmentScreen(serviceCardModel: serviceCardModel),
+          );
         },
       ),
     ],

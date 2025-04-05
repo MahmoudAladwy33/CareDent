@@ -17,6 +17,7 @@ class ServiceGridView extends StatelessWidget {
       appointmentSubtitle: 'Need To Remove A Damaged Tooth?',
       appointmentBody:
           'Our Expert Dentists Ensure A Painless   And Safe Extraction Process. Book Your Appointment Now!',
+      type: "Tooth Extraction",
     ),
     ServiceCardModel(
       image: AppImages.serviceCardToothVeneers,
@@ -27,6 +28,7 @@ class ServiceGridView extends StatelessWidget {
       appointmentSubtitle: 'Transform Your Smile With High-Quality Veneers',
       appointmentBody:
           'Achieve A Natural, Bright, And Flawless Look With Our Professional Dental Care',
+    type: "Veneers",
     ),
     ServiceCardModel(
       image: AppImages.serviceCardToothRoot,
@@ -37,6 +39,7 @@ class ServiceGridView extends StatelessWidget {
       appointmentSubtitle: 'Save Your Natural Tooth',
       appointmentBody:
           'With A Painless Root Canal Treatment.   Our Specialists Provide Effective Care To Relieve Pain And Restore Your Tooth’s Health.',
+    type: "Root Canal Treatment",
     ),
     ServiceCardModel(
       image: AppImages.serviceCardToothFilling,
@@ -47,6 +50,7 @@ class ServiceGridView extends StatelessWidget {
       appointmentSubtitle: 'Got A Cavity?',
       appointmentBody:
           'Our Safe And Durable Dental Fillings Restore Your Tooth’s Strength And Appearance. Book Your Appointment Today!',
+   type: "Dental Filling",
     ),
     ServiceCardModel(
       image: AppImages.serviceCardToothPolishing,
@@ -57,6 +61,7 @@ class ServiceGridView extends StatelessWidget {
       appointmentSubtitle: 'Maintain A Healthy And Bright Smile',
       appointmentBody:
           'With Professional Teeth Cleaning. Our Scaling & Polishing Treatment Removes Plaque And Stains For A Fresh Loo',
+    type: "Scaling & Polishing",
     ),
     ServiceCardModel(
       image: AppImages.serviceCardToothBraces,
@@ -67,6 +72,7 @@ class ServiceGridView extends StatelessWidget {
       appointmentSubtitle: 'Enhance Your Smile',
       appointmentBody:
           'Straighten Your Teeth With Advanced Orthodontic Treatments. Get Started On Your Journey To A Perfect Smile Today!',
+    type: "Orthodontics (Braces)",
     ),
   ];
   @override
