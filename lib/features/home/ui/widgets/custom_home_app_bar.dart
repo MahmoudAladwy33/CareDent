@@ -6,8 +6,8 @@ import '../../../../core/theme/text_styless.dart';
 import '../../../../core/utlils/app_images.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
-  const CustomHomeAppBar({super.key});
-
+  const CustomHomeAppBar({super.key, required this.userName});
+  final String userName;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -31,11 +31,17 @@ class CustomHomeAppBar extends StatelessWidget {
                           'Welcome back',
                           style: TextStyles.font16DarkBlueMedieum.copyWith(
                             color: Colors.white,
+                            letterSpacing: 1.7,
                           ),
                         ),
                       ),
                       SizedBox(height: 6.h),
-                      Text('Name', style: TextStyles.font20WhiteSemiBold),
+                      Text(
+                        userName,
+                        style: TextStyles.font20WhiteSemiBold.copyWith(
+                          letterSpacing: 1.7,
+                        ),
+                      ),
                     ],
                   ),
                   Padding(

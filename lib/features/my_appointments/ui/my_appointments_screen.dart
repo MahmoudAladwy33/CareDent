@@ -1,3 +1,4 @@
+import 'package:caredent/features/my_appointments/ui/widgets/my_appointments_screen_body.dart';
 import 'package:flutter/material.dart';
 
 class MyAppointmentsScreen extends StatelessWidget {
@@ -5,6 +6,6 @@ class MyAppointmentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MyAppointmentsScreenBody();
   }
 }
