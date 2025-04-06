@@ -16,7 +16,7 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-   void emitLoginStates() async {
+  void emitLoginStates() async {
     emit(const LoginState.loading());
     final response = await _loginRepo.login(
       LoginRequestBody(
@@ -27,6 +27,7 @@ class LoginCubit extends Cubit<LoginState> {
     response.when(
       success: (loginResponse) async {
         await saveUserToken(loginResponse.token ?? '');
+        await saveUserName(loginResponse.data.fullName ?? '');
         emit(LoginState.success(loginResponse));
       },
       failure: (apiErrorModel) {
@@ -38,7 +39,15 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> saveUserToken(String token) async {
     await SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, token);
     DioFactory.setTokenIntoHeaderAfterSignUp(token);
-    log("Saved Token: ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken)}");
+    log(
+      "Saved Token: ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken)}",
+    );
+  }
+
+  Future<void> saveUserName(String userName) async {
+    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userName, userName);
+    log(
+      "Saved UserName: ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userName)}",
+    );
   }
 }
-

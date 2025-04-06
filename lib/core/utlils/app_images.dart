@@ -1,4 +1,3 @@
-
 class AppImages {
   static const String splashViewBackground =
       'assets/images/splash_view_background.png';
@@ -39,4 +38,6 @@ class AppImages {
       'assets/images/book_appointment_root.png';
   static const bookAppointmentToothVeneers =
       'assets/images/book_appointment_veneers.png';
+  static const myAppointmentBackGround =
+      'assets/images/my_appoinment_app_bar_background.png';
 }
