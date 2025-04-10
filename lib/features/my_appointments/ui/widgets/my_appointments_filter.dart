@@ -18,7 +18,7 @@ class _MyAppointmentsFilterState extends State<MyAppointmentsFilter> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      padding: EdgeInsets.symmetric(horizontal: 4.w),
       child: Row(
         children: List.generate(filters.length, (index) {
           final isSelected = selectedIndex == index;
