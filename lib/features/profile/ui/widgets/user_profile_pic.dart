@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:caredent/core/widgets/default_user_img.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -135,25 +136,24 @@ class _UserProfilePicState extends State<UserProfilePic> {
       left: 135.w,
       child: Stack(
         children: [
-          GestureDetector(
-            onLongPress: _showImagePreviewDialog,
-            child: Container(
-              width: 120.w,
-              height: 120.h,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey[300],
-                image: DecorationImage(
-                  image:
-                      _imageFile != null
-                          ? FileImage(_imageFile!)
-                          : AssetImage(AppImages.homeProfilePic)
-                              as ImageProvider,
-                  fit: BoxFit.cover,
+          _imageFile != null
+              ? GestureDetector(
+                onLongPress: _showImagePreviewDialog,
+                child: Container(
+                  width: 120.w,
+                  height: 120.h,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.grey[300],
+                    image: DecorationImage(image: FileImage(_imageFile!)),
+                  ),
                 ),
+              )
+              : DefaultUserImg(
+                iconSize: 110.sp,
+                containerWidth: 120.w,
+                containerHeight: 120.h,
               ),
-            ),
-          ),
           Positioned(
             bottom: 0,
             right: 0,

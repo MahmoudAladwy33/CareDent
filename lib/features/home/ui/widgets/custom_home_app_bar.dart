@@ -1,3 +1,4 @@
+import 'package:caredent/core/widgets/default_user_img.dart';
 import 'package:caredent/features/home/ui/widgets/reviews_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,11 +47,7 @@ class CustomHomeAppBar extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 50.h),
-                    child: Image.asset(
-                      AppImages.homeProfilePic,
-                      height: 42.h,
-                      width: 42.w,
-                    ),
+                    child: DefaultUserImg(),
                   ),
                 ],
               ),
