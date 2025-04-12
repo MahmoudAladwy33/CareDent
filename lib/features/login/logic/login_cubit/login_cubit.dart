@@ -27,7 +27,11 @@ class LoginCubit extends Cubit<LoginState> {
     response.when(
       success: (loginResponse) async {
         await saveUserToken(loginResponse.token ?? '');
-        await saveUserName(loginResponse.data.fullName ?? '');
+        await saveUserData(
+          loginResponse.data.fullName ?? '',
+          loginResponse.data.email ?? '',
+          loginResponse.data.phone ?? '',
+        );
         emit(LoginState.success(loginResponse));
       },
       failure: (apiErrorModel) {
@@ -44,8 +48,11 @@ class LoginCubit extends Cubit<LoginState> {
     );
   }
 
-  Future<void> saveUserName(String userName) async {
+  Future<void> saveUserData(String userName, String email, String phone) async {
     await SharedPrefHelper.setSecuredString(SharedPrefKeys.userName, userName);
+    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userEmail, email);
+    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userPhone, phone);
+
     log(
       "Saved UserName: ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userName)}",
     );

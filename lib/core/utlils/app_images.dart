@@ -42,4 +42,5 @@ class AppImages {
       'assets/images/my_appoinment_app_bar_background.png';
   static const profileBackground = 'assets/images/profile_backGround.png';
   static const profileCameraUp = 'assets/images/profile_camera-up.png';
+  static const profileUser = 'assets/images/profile_user.png';
 }

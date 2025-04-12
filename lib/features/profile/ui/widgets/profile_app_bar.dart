@@ -1,3 +1,4 @@
+import 'package:caredent/core/widgets/default_user_img.dart';
 import 'package:caredent/features/profile/ui/widgets/user_profile_pic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,8 +7,8 @@ import '../../../../core/theme/text_styless.dart';
 import '../../../../core/utlils/app_images.dart';
 
 class ProfileAppBar extends StatelessWidget {
-  const ProfileAppBar({super.key});
-
+  const ProfileAppBar({super.key, required this.userName});
+  final String userName;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -41,18 +42,14 @@ class ProfileAppBar extends StatelessWidget {
                         ),
                         SizedBox(height: 6.h),
                         Text(
-                          'userName',
+                          userName,
                           style: TextStyles.font20WhiteSemiBold.copyWith(
                             letterSpacing: 1.7,
                           ),
                         ),
                       ],
                     ),
-                    Image.asset(
-                      AppImages.homeProfilePic,
-                      height: 42.h,
-                      width: 42.w,
-                    ),
+                    DefaultUserImg(),
                   ],
                 ),
               ],
