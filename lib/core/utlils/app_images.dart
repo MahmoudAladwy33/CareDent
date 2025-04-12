@@ -40,4 +40,6 @@ class AppImages {
       'assets/images/book_appointment_veneers.png';
   static const myAppointmentBackGround =
       'assets/images/my_appoinment_app_bar_background.png';
+  static const profileBackground = 'assets/images/profile_backGround.png';
+  static const profileCameraUp = 'assets/images/profile_camera-up.png';
 }
