@@ -1,45 +1,31 @@
+import 'dart:developer';
+
 import 'package:caredent/features/home/ui/widgets/custom_home_app_bar.dart';
 import 'package:caredent/features/home/ui/widgets/pick_a_service_text.dart';
 import 'package:caredent/features/home/ui/widgets/service_grid_view.dart';
 import 'package:caredent/features/home/ui/widgets/view_all.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/helper/constants.dart';
-import '../../../../core/helper/shared_pref_helper.dart';
+import '../../../../core/logic/user_cubit/user_cubit.dart';
 
-class HomeScreenBody extends StatefulWidget {
+class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
 
   @override
-  State<HomeScreenBody> createState() => _HomeScreenBodyState();
-}
-
-class _HomeScreenBodyState extends State<HomeScreenBody> {
-  String? userName;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    loadUserName();
-  }
-
-  void loadUserName() async {
-    final name = await getUserName();
-    setState(() {
-      userName = name;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final user = context.watch<UserCubit>().state.user;
+    log('Profile screen got user: ${user?.name}');
+    if (user == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomHomeAppBar(userName: userName ?? 'User Name'),
+            CustomHomeAppBar(userName: user.name),
             SizedBox(height: 18.h),
             ViewAll(),
             SizedBox(height: 32.h),
@@ -51,9 +37,5 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
         ),
       ),
     );
-  }
-
-  Future<String?> getUserName() async {
-    return await SharedPrefHelper.getSecuredString(SharedPrefKeys.userName);
   }
 }

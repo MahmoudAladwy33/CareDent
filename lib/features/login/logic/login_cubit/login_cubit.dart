@@ -8,9 +8,13 @@ import 'package:caredent/features/login/data/repos/login_repo.dart';
 import 'package:caredent/features/login/logic/login_cubit/login_state.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/logic/user_cubit/user_cubit.dart';
+import '../../../../core/models/user_model.dart';
+
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit(this._loginRepo) : super(LoginState.initial());
+  LoginCubit(this._loginRepo, this.userCubit) : super(LoginState.initial());
   final LoginRepo _loginRepo;
+  final UserCubit userCubit;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -27,11 +31,15 @@ class LoginCubit extends Cubit<LoginState> {
     response.when(
       success: (loginResponse) async {
         await saveUserToken(loginResponse.token ?? '');
-        await saveUserData(
-          loginResponse.data.fullName ?? '',
-          loginResponse.data.email ?? '',
-          loginResponse.data.phone ?? '',
-        );
+        final userModel = UserModel.fromJson(loginResponse.data.toJson());
+        log("👤 Login data: ${loginResponse.data.toJson()}");
+        userCubit.setUser(userModel);
+
+        // await saveUserData(
+        //   loginResponse.data.fullName ?? '',
+        //   loginResponse.data.email ?? '',
+        //   loginResponse.data.phone ?? '',
+        // );
         emit(LoginState.success(loginResponse));
       },
       failure: (apiErrorModel) {
@@ -48,13 +56,13 @@ class LoginCubit extends Cubit<LoginState> {
     );
   }
 
-  Future<void> saveUserData(String userName, String email, String phone) async {
-    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userName, userName);
-    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userEmail, email);
-    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userPhone, phone);
+  // Future<void> saveUserData(String userName, String email, String phone) async {
+  //   await SharedPrefHelper.setSecuredString(SharedPrefKeys.userName, userName);
+  //   await SharedPrefHelper.setSecuredString(SharedPrefKeys.userEmail, email);
+  //   await SharedPrefHelper.setSecuredString(SharedPrefKeys.userPhone, phone);
 
-    log(
-      "Saved UserName: ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userName)}",
-    );
-  }
+  //   log(
+  //     "Saved UserName: ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userName)}",
+  //   );
+  // }
 }
