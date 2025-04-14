@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'login_response_body.g.dart';
+
 @JsonSerializable()
 class LoginResponseBody {
   final UserData data;
@@ -23,6 +24,8 @@ class UserData {
   @JsonKey(name: 'Email')
   final String email;
   final String role;
+  final String healthRecord;
+  final String? profileImg;
 
   UserData({
     required this.id,
@@ -30,6 +33,8 @@ class UserData {
     required this.phone,
     required this.email,
     required this.role,
+    required this.healthRecord,
+    this.profileImg,
   });
 
   factory UserData.fromJson(Map<String, dynamic> json) =>

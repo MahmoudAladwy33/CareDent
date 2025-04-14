@@ -505,10 +505,10 @@ class __$$ErrorImplCopyWithImpl<T, $Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? apiErrorModel = freezed}) {
+  $Res call({Object? apiErrorModel = null}) {
     return _then(
       _$ErrorImpl<T>(
-        freezed == apiErrorModel
+        null == apiErrorModel
             ? _value.apiErrorModel
             : apiErrorModel // ignore: cast_nullable_to_non_nullable
                 as ApiErrorModel,
@@ -535,17 +535,12 @@ class _$ErrorImpl<T> implements Error<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorImpl<T> &&
-            const DeepCollectionEquality().equals(
-              other.apiErrorModel,
-              apiErrorModel,
-            ));
+            (identical(other.apiErrorModel, apiErrorModel) ||
+                other.apiErrorModel == apiErrorModel));
   }
 
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(apiErrorModel),
-  );
+  int get hashCode => Object.hash(runtimeType, apiErrorModel);
 
   /// Create a copy of CreateAppoinmentState
   /// with the given fields replaced by the non-null parameter values.
