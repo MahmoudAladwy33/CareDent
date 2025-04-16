@@ -34,7 +34,7 @@ class LoginCubit extends Cubit<LoginState> {
         final userModel = UserModel.fromJson(loginResponse.data.toJson());
         log("👤 Login data: ${loginResponse.data.toJson()}");
         userCubit.setUser(userModel);
-
+        await saveUserDataLocally(userModel);
         // await saveUserData(
         //   loginResponse.data.fullName ?? '',
         //   loginResponse.data.email ?? '',
