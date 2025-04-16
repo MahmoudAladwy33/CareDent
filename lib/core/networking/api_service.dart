@@ -9,7 +9,6 @@ import 'package:caredent/features/sign_up/data/models/verify_account/verify_acco
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
-
 import '../../features/book_appointment/data/models/create_appoinment_request_body.dart';
 import '../../features/book_appointment/data/models/create_appoinment_response.dart';
 import '../../features/login/data/models/create_new_password/create_new_password_request_body.dart';
@@ -17,6 +16,8 @@ import '../../features/login/data/models/forget_password/forget_pass_email_reque
 import '../../features/login/data/models/forget_password/forget_pass_response.dart';
 import '../../features/login/data/models/verify_password/verify_password_request_body.dart';
 import '../../features/login/data/models/verify_password/verify_password_response.dart';
+import '../../features/profile/data/models/update_user_request_body.dart';
+import '../../features/profile/data/models/update_user_response.dart';
 part 'api_service.g.dart';
 
 @RestApi(baseUrl: ApiConstants.apiBaseUrl)
@@ -27,8 +28,7 @@ abstract class ApiService {
   Future<LoginResponseBody> login(@Body() LoginRequestBody loginRequestBody);
 
   @POST(ApiConstants.signUp)
-   Future<SignupResponse> signUp(@Body() SignupRequestBody signupRequestBody);
-
+  Future<SignupResponse> signUp(@Body() SignupRequestBody signupRequestBody);
 
   @POST(ApiConstants.verifyAccount)
   Future<VerifyAccountResponse> verifyAccount(
@@ -36,19 +36,18 @@ abstract class ApiService {
     @Header('Authorization') String token,
   );
 
-   @POST(ApiConstants.forgetPassword)
+  @POST(ApiConstants.forgetPassword)
   Future<ForgetPassResponse> forgetPassword(
     @Body() ForgetPassEmailRequestBody forgetPassEmailRequestBody,
   );
 
-
-   @POST(ApiConstants.verifyPassword)
+  @POST(ApiConstants.verifyPassword)
   Future<VerifyPasswordResponse> verifyPassword(
     @Body() VerifyPasswordRequestBody verifyPasswordRequestBody,
     @Header('Authorization') String token,
   );
 
-   @PUT(ApiConstants.resetPassword)
+  @PUT(ApiConstants.resetPassword)
   Future<CreateNewPasswordResponse> createNewPassword(
     @Header('Authorization') String token,
     @Body() CreateNewPasswordRequestBody createNewPasswordRequestBody,
@@ -58,5 +57,11 @@ abstract class ApiService {
   Future<CreateAppoinmentResponse> createAppointment(
     @Body() CreateAppoinmentRequestBody createAppoinmentRequestBody,
     @Header('Authorization') String token,
+  );
+
+  @PUT(ApiConstants.updateUser)
+  Future<UpdateUserResponse> updateUser(
+    @Header('Authorization') String token,
+    @Body() UpdateUserRequestBody updateUserRequestBody,
   );
 }

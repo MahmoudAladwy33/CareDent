@@ -4,12 +4,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EditableProfileField extends StatefulWidget {
   final String title;
-  final String value;
-
+  final String? value;
+  final bool? check;
+  final String? Function(String?)? validator;
+  final int? maxLines;
+  final TextEditingController? controller;
+  final Function()? onCheckPressed;
   const EditableProfileField({
     super.key,
     required this.title,
-    required this.value,
+    this.value,
+    this.check,
+    this.validator,
+    this.maxLines,
+    this.controller,
+    this.onCheckPressed,
   });
 
   @override
@@ -36,7 +45,10 @@ class _EditableProfileFieldState extends State<EditableProfileField> {
           Row(
             children: [
               Expanded(
-                child: TextField(
+                child: TextFormField(
+                  controller: widget.controller,
+                  maxLines: widget.maxLines,
+                  validator: widget.validator,
                   enabled: isEditing,
                   style: TextStyles.font14GrayRegular.copyWith(
                     color: const Color(0xff343A40),
@@ -79,18 +91,31 @@ class _EditableProfileFieldState extends State<EditableProfileField> {
                 ),
               ),
               SizedBox(width: 8.w),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isEditing = !isEditing;
-                  });
-                },
-                child: Icon(
-                  isEditing ? Icons.check : Icons.edit_note_rounded,
-                  color: const Color(0xFF1976D2),
-                  size: 26.sp,
-                ),
-              ),
+              widget.check == true
+                  ? const Icon(
+                    Icons.edit_note_rounded,
+                    color: Color(0xFF1976D2),
+                    size: 26,
+                  )
+                  : GestureDetector(
+                    onTap: () {
+                      if (isEditing) {
+                        widget.onCheckPressed?.call();
+                        setState(() {
+                          isEditing = false;
+                        });
+                      } else {
+                        setState(() {
+                          isEditing = true;
+                        });
+                      }
+                    },
+                    child: Icon(
+                      isEditing ? Icons.check : Icons.edit_note_rounded,
+                      color: const Color(0xFF1976D2),
+                      size: 26.sp,
+                    ),
+                  ),
             ],
           ),
         ],

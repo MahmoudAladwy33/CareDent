@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   setupGetIt();
   runApp(DevicePreview(enabled: true, builder: (context) => const CareDent()));
 }

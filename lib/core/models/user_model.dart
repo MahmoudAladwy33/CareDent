@@ -22,4 +22,29 @@ class UserModel {
       profileImg: json['profileImg'] ?? '',
     );
   }
+  Map<String, dynamic> toJson() {
+    return {
+      'fullName': name,
+      'Email': email,
+      'Phone': phone,
+      'healthRecord': healthRecord,
+      'profileImg': profileImg,
+    };
+  }
+
+  UserModel copyWith({
+    String? name,
+    String? email,
+    String? phone,
+    String? healthRecord,
+    String? profileImg,
+  }) {
+    return UserModel(
+      name: name ?? this.name,
+      email: email ?? this.email,
+      phone: phone ?? this.phone,
+      healthRecord: healthRecord ?? this.healthRecord,
+      profileImg: profileImg ?? this.profileImg,
+    );
+  }
 }
