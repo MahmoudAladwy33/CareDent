@@ -1,11 +1,17 @@
 import 'dart:io';
+import 'package:caredent/core/models/user_model.dart';
+import 'package:caredent/core/theme/colors_manager.dart';
 import 'package:caredent/core/widgets/default_user_img.dart';
+import 'package:caredent/features/profile/logic/update_user_image_cubit/update_user_image_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import '../../../../core/logic/user_cubit/user_cubit.dart';
 import '../../../../core/utlils/app_images.dart';
+import '../../logic/update_user_image_cubit/update_user_image_state.dart';
 
 class UserProfilePic extends StatefulWidget {
   const UserProfilePic({super.key});
@@ -59,7 +65,7 @@ class _UserProfilePicState extends State<UserProfilePic> {
       _imageFile = File(croppedFile.path);
     });
 
-    // Upload to server here if needed
+    context.read<UpdateUserImageCubit>().uploadImage(_imageFile!);
   }
 
   void _showImageSourceDialog() {
@@ -90,7 +96,7 @@ class _UserProfilePicState extends State<UserProfilePic> {
     );
   }
 
-  void _showImagePreviewDialog() {
+  void _showImagePreviewDialog(UserModel user) {
     showDialog(
       context: context,
       builder:
@@ -102,10 +108,7 @@ class _UserProfilePicState extends State<UserProfilePic> {
                 InteractiveViewer(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
-                    child:
-                        _imageFile != null
-                            ? Image.file(_imageFile!)
-                            : Image.asset(AppImages.homeProfilePic),
+                    child: Image.network(user.profileImg!),
                   ),
                 ),
                 Positioned(
@@ -131,42 +134,91 @@ class _UserProfilePicState extends State<UserProfilePic> {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 150.h,
-      left: 135.w,
-      child: Stack(
-        children: [
-          _imageFile != null
-              ? GestureDetector(
-                onLongPress: _showImagePreviewDialog,
-                child: Container(
-                  width: 120.w,
-                  height: 120.h,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.grey[300],
-                    image: DecorationImage(image: FileImage(_imageFile!)),
+    final user = context.watch<UserCubit>().state.user;
+
+    return BlocListener<UpdateUserImageCubit, UpdateUserImageState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          success: (data) {
+            final updatedUser = context.read<UserCubit>().state.user?.copyWith(
+              profileImg: data.data.profileImg,
+            );
+
+            if (updatedUser != null) {
+              context.read<UserCubit>().setUser(updatedUser);
+            }
+          },
+        );
+      },
+      child: BlocBuilder<UpdateUserImageCubit, UpdateUserImageState>(
+        builder: (context, state) {
+          final isLoading = state is Loading;
+
+          return Positioned(
+            top: 150.h,
+            left: 135.w,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                (user?.profileImg != null &&
+                        user!.profileImg!.trim().isNotEmpty)
+                    ? GestureDetector(
+                      onLongPress: () => _showImagePreviewDialog(user),
+                      child: Container(
+                        width: 120.w,
+                        height: 120.h,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.grey[300],
+                          image: DecorationImage(
+                            image: NetworkImage(user.profileImg!),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    )
+                    : DefaultUserImg(
+                      iconSize: 110.sp,
+                      containerWidth: 120.w,
+                      containerHeight: 120.h,
+                    ),
+
+                if (isLoading)
+                  Container(
+                    width: 120.w,
+                    height: 120.h,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black.withOpacity(0.4),
+                    ),
+                    child: Center(
+                      child: SizedBox(
+                        width: 28.w,
+                        height: 28.h,
+                        child: const CircularProgressIndicator(
+                          color: ColorsManager.mainBlue,
+                          strokeWidth: 3,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: GestureDetector(
+                    onTap: _showImageSourceDialog,
+                    child: Image.asset(
+                      AppImages.profileCameraUp,
+                      width: 32.w,
+                      height: 32.h,
+                    ),
                   ),
                 ),
-              )
-              : DefaultUserImg(
-                iconSize: 110.sp,
-                containerWidth: 120.w,
-                containerHeight: 120.h,
-              ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: GestureDetector(
-              onTap: _showImageSourceDialog,
-              child: Image.asset(
-                AppImages.profileCameraUp,
-                width: 32.w,
-                height: 32.h,
-              ),
+              ],
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
