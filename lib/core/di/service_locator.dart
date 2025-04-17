@@ -1,6 +1,7 @@
 import 'package:caredent/features/book_appointment/data/repos/create_appoinment_repo.dart';
 import 'package:caredent/features/book_appointment/logic/cubit/create_appoinment_cubit.dart';
-import 'package:caredent/features/profile/logic/cubit/update_user_cubit.dart';
+import 'package:caredent/features/profile/data/repos/update_user_image_repo.dart';
+import 'package:caredent/features/profile/logic/update_user_cubit/update_user_cubit.dart';
 import 'package:caredent/features/sign_up/data/repos/sign_up_repo.dart';
 import 'package:caredent/features/sign_up/logic/sign_up_cubit/sign_up_cubit.dart';
 import 'package:dio/dio.dart';
@@ -16,6 +17,7 @@ import '../../features/login/logic/login_cubit/login_cubit.dart';
 import '../../features/login/logic/verify_pass_cubit/verify_password_cubit.dart';
 import '../../features/profile/data/repos/update_user_repo.dart';
 
+import '../../features/profile/logic/update_user_image_cubit/update_user_image_cubit.dart';
 import '../../features/sign_up/data/repos/verify_account_repo.dart';
 import '../../features/sign_up/logic/verify_account_cubit/verify_account_cubit.dart';
 import '../logic/user_cubit/user_cubit.dart';
@@ -78,10 +80,17 @@ Future<void> setupGetIt() async {
   );
 
   //update user
-  getIt.registerLazySingleton<UpdateUserRepo>(
-    () => UpdateUserRepo(getIt()),
+  getIt.registerLazySingleton<UpdateUserRepo>(() => UpdateUserRepo(getIt()));
+  getIt.registerFactory<UpdateUserCubit>(() => UpdateUserCubit(getIt()));
+
+  //update user image
+  getIt.registerLazySingleton<Dio>(() => DioFactory.getDio());
+
+  getIt.registerLazySingleton<UpdateUserImageRepo>(
+    () => UpdateUserImageRepo(getIt<Dio>()),
   );
-  getIt.registerFactory<UpdateUserCubit>(
-    () => UpdateUserCubit(getIt()),
+
+  getIt.registerFactory<UpdateUserImageCubit>(
+    () => UpdateUserImageCubit(getIt<UpdateUserImageRepo>()),
   );
 }

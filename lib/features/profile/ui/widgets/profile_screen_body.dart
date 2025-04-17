@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/helper/app_regex.dart';
 import '../../../../core/logic/user_cubit/user_cubit.dart';
 import '../../../../core/models/user_model.dart';
-import '../../logic/cubit/update_user_cubit.dart';
+import '../../logic/update_user_cubit/update_user_cubit.dart';
 
 class ProfileScreenBody extends StatelessWidget {
   const ProfileScreenBody({super.key});
@@ -31,7 +31,7 @@ class ProfileScreenBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ProfileAppBar(userName: user.name),
+              ProfileAppBar(user: user),
               EditableProfileField(
                 onCheckPressed: () {
                   validateThenUpdate(context, user);

@@ -25,7 +25,7 @@ class HomeScreenBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomHomeAppBar(userName: user.name),
+            CustomHomeAppBar(user: user),
             SizedBox(height: 18.h),
             ViewAll(),
             SizedBox(height: 32.h),
