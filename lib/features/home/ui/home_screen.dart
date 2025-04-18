@@ -1,6 +1,7 @@
 import 'package:caredent/features/home/ui/widgets/home_screen_body.dart';
 import 'package:caredent/features/my_appointments/ui/my_appointments_screen.dart';
 import 'package:caredent/features/profile/ui/profile_screen.dart';
+import 'package:caredent/features/settings/ui/widgets/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/custom_bottom_nav_bar.dart';
@@ -19,7 +20,7 @@ class HomeScreenState extends State<HomeScreen> {
     HomeScreenBody(),
     MyAppointmentsScreen(),
     ProfileScreen(),
-    const Center(child: Text('Settings Screen')),
+    SettingsScreen(),
   ];
 
   @override
