@@ -43,4 +43,7 @@ class AppImages {
   static const profileBackground = 'assets/images/profile_backGround.png';
   static const profileCameraUp = 'assets/images/profile_camera-up.png';
   static const profileUser = 'assets/images/profile_user.png';
+  static const settingsBackground = 'assets/images/settings_app_bar.png';
+  static const feedback = 'assets/images/feedback.svg';
+  static const about = 'assets/images/about.svg';
 }

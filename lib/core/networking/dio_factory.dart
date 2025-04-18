@@ -36,6 +36,10 @@ class DioFactory {
     dio?.options.headers = {'Authorization': 'Bearer $token'};
   }
 
+  static void removeTokenFromHeader() {
+    dio?.options.headers.remove('Authorization');
+  }
+
   static void addDioInterceptor() {
     dio?.interceptors.add(
       PrettyDioLogger(
