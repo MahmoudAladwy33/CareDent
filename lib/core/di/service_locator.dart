@@ -16,8 +16,10 @@ import '../../features/login/logic/forget_pass_cubit/forget_password_cubit.dart'
 import '../../features/login/logic/login_cubit/login_cubit.dart';
 import '../../features/login/logic/verify_pass_cubit/verify_password_cubit.dart';
 import '../../features/my_appointments/data/repos/create_review_repo.dart';
+import '../../features/my_appointments/data/repos/delete_appointment_repo.dart';
 import '../../features/my_appointments/data/repos/get_my_appointments_repo.dart';
 import '../../features/my_appointments/logic/create_review_cubit/create_review_cubit.dart';
+import '../../features/my_appointments/logic/delete_appoinment_cubit/delete_appoinment_cubit.dart';
 import '../../features/my_appointments/logic/get_appoinments_cubit/get_my_appointments_cubit.dart';
 import '../../features/profile/data/repos/update_user_repo.dart';
 
@@ -110,7 +112,13 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<CreateReviewRepo>(
     () => CreateReviewRepo(getIt()),
   );
-  getIt.registerFactory<CreateReviewCubit>(
-    () => CreateReviewCubit(getIt()),
+  getIt.registerFactory<CreateReviewCubit>(() => CreateReviewCubit(getIt()));
+
+  //DeleteAppointment
+  getIt.registerLazySingleton<DeleteAppointmentRepo>(
+    () => DeleteAppointmentRepo(getIt()),
+  );
+  getIt.registerFactory<DeleteAppoinmentCubit>(
+    () => DeleteAppoinmentCubit(getIt()),
   );
 }

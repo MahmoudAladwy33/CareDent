@@ -1,4 +1,4 @@
-import 'package:caredent/features/my_appointments/data/models/get_my_appointments_response.dart';
+import 'package:caredent/features/my_appointments/data/models/get_appoinments/get_my_appointments_response.dart';
 
 import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/networking/api_result.dart';

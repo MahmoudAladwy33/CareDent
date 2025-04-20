@@ -1,15 +1,14 @@
-import 'package:caredent/core/theme/colors_manager.dart';
 import 'package:caredent/core/theme/text_styless.dart';
 import 'package:caredent/core/utlils/app_images.dart';
-import 'package:caredent/features/my_appointments/data/models/get_my_appointments_response.dart';
+import 'package:caredent/features/my_appointments/data/models/get_appoinments/get_my_appointments_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-
-import '../../logic/create_review_cubit/create_review_cubit.dart';
+import '../../logic/delete_appoinment_cubit/delete_appoinment_cubit.dart';
 import '../../logic/get_appoinments_cubit/get_my_appointments_cubit.dart';
+import 'show_delete_confirmation_dialog.dart';
+import 'show_rating_popup.dart';
 
 class MyAppointmentsListViewItem extends StatelessWidget {
   const MyAppointmentsListViewItem({super.key, required this.appointment});
@@ -87,24 +86,33 @@ class MyAppointmentsListViewItem extends StatelessWidget {
               ],
             ),
           ),
-          // الحالة الوحيدة اللي نعرض فيها أيقونة:
-          if (isUpcoming && !hasStudent) //  لو Upcoming ومفيش student
+          if (isUpcoming && !hasStudent)
             IconButton(
-              onPressed: () {
-                // Handle delete here
+              onPressed: () async {
+                final shouldDelete = await showDeleteConfirmationDialog(
+                  context,
+                );
+                if (shouldDelete == true) {
+                  final deleteCubit = BlocProvider.of<DeleteAppoinmentCubit>(
+                    context,
+                  );
+                  deleteCubit.emitDeletAppoinmentStates(appointment.id);
+                  BlocProvider.of<GetMyAppointmentsCubit>(
+                    context,
+                  ).getMyAppointments();
+                }
               },
               icon: Icon(Icons.delete_outline),
               color: Colors.blue.shade900,
             )
-          else if (isUpcoming && hasStudent) //  لو Upcoming وفي student
+          else if (isUpcoming && hasStudent)
             IconButton(
               onPressed: () {
-                showRatingPopup(context);
+                showRatingPopup(context, appointment);
               },
               icon: Icon(Icons.check_circle_outline_outlined),
               color: Colors.blue.shade900,
             ),
-          // Completed → مفيش أيقونة
         ],
       ),
     );
@@ -114,108 +122,6 @@ class MyAppointmentsListViewItem extends StatelessWidget {
     if (isoDate == null) return '';
     final date = DateTime.tryParse(isoDate);
     if (date == null) return '';
-    return DateFormat('MMMM d, y').format(date); // November 10, 2025
-  }
-
-  void showRatingPopup(BuildContext context) {
-    final reviewCubit = BlocProvider.of<CreateReviewCubit>(context);
-    final appointmentsCubit = BlocProvider.of<GetMyAppointmentsCubit>(context);
-    double rating = 0;
-
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          backgroundColor: const Color(0xFFF9F9F9),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.r),
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(20.r),
-            child: StatefulBuilder(
-              builder: (context, setState) {
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    RatingBar.builder(
-                      initialRating: rating,
-                      minRating: 0,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                      itemBuilder:
-                          (context, _) =>
-                              Icon(Icons.star, color: Colors.amber, size: 25),
-                      onRatingUpdate: (value) {
-                        setState(() {
-                          rating = value;
-                        });
-                      },
-                    ),
-                    SizedBox(height: 16.h),
-                    Text(
-                      "Rate Your Experience",
-                      style: TextStyles.font22WhiteBold.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: ColorsManager.darkBlue,
-                      ),
-                    ),
-                    SizedBox(height: 20.h),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25.r),
-                        border: Border.all(color: Colors.grey.shade300),
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              controller: reviewCubit.review,
-                              onChanged: (_) => setState(() {}),
-                              decoration: InputDecoration(
-                                hintText: "Type your feedback!...",
-                                hintStyle: TextStyles.font16DarkBlueMedieum
-                                    .copyWith(color: Color(0xffC8CDD6)),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            onPressed:
-                                (rating == 0 || reviewCubit.review.text.isEmpty)
-                                    ? null
-                                    : () {
-                                      Navigator.of(context).pop();
-
-                                      reviewCubit.emitCreateReviewStates(
-                                        rating,
-                                        appointment.student!.id,
-                                        appointment.id,
-                                      );
-                                      appointmentsCubit.getMyAppointments();
-                                    },
-                            icon: Icon(
-                              Icons.send,
-                              color:
-                                  (rating == 0 ||
-                                          reviewCubit.review.text.isEmpty)
-                                      ? Colors.grey
-                                      : ColorsManager.mainBlue,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-        );
-      },
-    );
+    return DateFormat('MMMM d, y').format(date);
   }
 }
