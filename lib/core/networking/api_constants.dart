@@ -10,6 +10,7 @@ class ApiConstants {
   static const String updateUser = "users/updateMe";
   static const String getMyAppointments = "order";
   static const String createReview = "review";
+  static const String deleteAppointment = "order/{id}";
 }
 
 class ApiErrors {

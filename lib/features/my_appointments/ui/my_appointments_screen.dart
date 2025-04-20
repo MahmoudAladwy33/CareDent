@@ -5,6 +5,8 @@ import 'package:caredent/features/my_appointments/ui/widgets/my_appointments_scr
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../logic/delete_appoinment_cubit/delete_appoinment_cubit.dart';
+
 class MyAppointmentsScreen extends StatelessWidget {
   const MyAppointmentsScreen({super.key});
 
@@ -17,6 +19,7 @@ class MyAppointmentsScreen extends StatelessWidget {
               (context) => getIt<GetMyAppointmentsCubit>()..getMyAppointments(),
         ),
         BlocProvider(create: (context) => getIt<CreateReviewCubit>()),
+        BlocProvider(create: (context) => getIt<DeleteAppoinmentCubit>()),
       ],
       child: MyAppointmentsScreenBody(),
     );

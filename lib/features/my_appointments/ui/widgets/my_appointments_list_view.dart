@@ -1,4 +1,4 @@
-import 'package:caredent/features/my_appointments/data/models/get_my_appointments_response.dart';
+import 'package:caredent/features/my_appointments/data/models/get_appoinments/get_my_appointments_response.dart';
 import 'package:flutter/material.dart';
 
 import 'my_appointments_list_view_item.dart';
