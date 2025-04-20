@@ -16,6 +16,8 @@ import '../../features/login/data/models/forget_password/forget_pass_email_reque
 import '../../features/login/data/models/forget_password/forget_pass_response.dart';
 import '../../features/login/data/models/verify_password/verify_password_request_body.dart';
 import '../../features/login/data/models/verify_password/verify_password_response.dart';
+import '../../features/my_appointments/data/models/create_review/create_review_request_body.dart';
+import '../../features/my_appointments/data/models/create_review/create_review_response.dart';
 import '../../features/my_appointments/data/models/get_my_appointments_response.dart';
 import '../../features/profile/data/models/update_user_request_body.dart';
 import '../../features/profile/data/models/update_user_response.dart';
@@ -69,5 +71,11 @@ abstract class ApiService {
   @GET(ApiConstants.getMyAppointments)
   Future<GetMyAppointmentsResponse> getMyAppointments(
     @Header('Authorization') String token,
+  );
+
+  @POST(ApiConstants.createReview)
+  Future<CreateReviewResponse> createReview(
+    @Header('Authorization') String token,
+    @Body() CreateReviewRequestBody createReviewRequestBody,
   );
 }
