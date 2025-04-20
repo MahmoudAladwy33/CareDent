@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyAppointmentsFilter extends StatefulWidget {
-  const MyAppointmentsFilter({super.key});
-
+  const MyAppointmentsFilter({super.key, required this.onFilterChanged});
+  final void Function(String) onFilterChanged;
   @override
   State<MyAppointmentsFilter> createState() => _MyAppointmentsFilterState();
 }
@@ -12,7 +12,7 @@ class MyAppointmentsFilter extends StatefulWidget {
 class _MyAppointmentsFilterState extends State<MyAppointmentsFilter> {
   final bool isSelected = false;
 
-  int selectedIndex = 1;
+  int selectedIndex = 0;
   final List<String> filters = ['All', 'Upcoming', 'Completed'];
 
   @override
@@ -31,6 +31,7 @@ class _MyAppointmentsFilterState extends State<MyAppointmentsFilter> {
                 setState(() {
                   selectedIndex = index;
                 });
+                widget.onFilterChanged(filters[index]);
               },
             ),
           );

@@ -15,6 +15,8 @@ import '../../features/login/logic/create_new_password_cubit/create_new_password
 import '../../features/login/logic/forget_pass_cubit/forget_password_cubit.dart';
 import '../../features/login/logic/login_cubit/login_cubit.dart';
 import '../../features/login/logic/verify_pass_cubit/verify_password_cubit.dart';
+import '../../features/my_appointments/data/repos/get_my_appointments_repo.dart';
+import '../../features/my_appointments/logic/cubit/get_my_appointments_cubit.dart';
 import '../../features/profile/data/repos/update_user_repo.dart';
 
 import '../../features/profile/logic/update_user_image_cubit/update_user_image_cubit.dart';
@@ -92,5 +94,13 @@ Future<void> setupGetIt() async {
 
   getIt.registerFactory<UpdateUserImageCubit>(
     () => UpdateUserImageCubit(getIt<UpdateUserImageRepo>()),
+  );
+
+  //getMyAppointments
+  getIt.registerLazySingleton<GetMyAppointmentsRepo>(
+    () => GetMyAppointmentsRepo(getIt()),
+  );
+  getIt.registerFactory<GetMyAppointmentsCubit>(
+    () => GetMyAppointmentsCubit(getIt()),
   );
 }
