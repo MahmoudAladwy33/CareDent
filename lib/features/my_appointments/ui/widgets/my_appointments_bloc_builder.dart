@@ -1,7 +1,7 @@
 import 'package:caredent/core/theme/colors_manager.dart';
 import 'package:caredent/features/my_appointments/data/models/get_my_appointments_response.dart';
-import 'package:caredent/features/my_appointments/logic/cubit/get_my_appointments_cubit.dart';
-import 'package:caredent/features/my_appointments/logic/cubit/get_my_appointments_state.dart';
+import 'package:caredent/features/my_appointments/logic/get_appoinments_cubit/get_my_appointments_cubit.dart';
+import 'package:caredent/features/my_appointments/logic/get_appoinments_cubit/get_my_appointments_state.dart';
 import 'package:caredent/features/my_appointments/ui/widgets/my_appointments_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

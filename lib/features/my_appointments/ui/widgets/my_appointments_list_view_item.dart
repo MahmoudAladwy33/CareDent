@@ -1,13 +1,15 @@
-import 'dart:developer';
-
 import 'package:caredent/core/theme/colors_manager.dart';
 import 'package:caredent/core/theme/text_styless.dart';
 import 'package:caredent/core/utlils/app_images.dart';
 import 'package:caredent/features/my_appointments/data/models/get_my_appointments_response.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+
+import '../../logic/create_review_cubit/create_review_cubit.dart';
+import '../../logic/get_appoinments_cubit/get_my_appointments_cubit.dart';
 
 class MyAppointmentsListViewItem extends StatelessWidget {
   const MyAppointmentsListViewItem({super.key, required this.appointment});
@@ -116,6 +118,10 @@ class MyAppointmentsListViewItem extends StatelessWidget {
   }
 
   void showRatingPopup(BuildContext context) {
+    final reviewCubit = BlocProvider.of<CreateReviewCubit>(context);
+    final appointmentsCubit = BlocProvider.of<GetMyAppointmentsCubit>(context);
+    double rating = 0;
+
     showDialog(
       context: context,
       builder: (context) {
@@ -128,7 +134,6 @@ class MyAppointmentsListViewItem extends StatelessWidget {
             padding: EdgeInsets.all(20.r),
             child: StatefulBuilder(
               builder: (context, setState) {
-                double rating = 0;
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -139,14 +144,13 @@ class MyAppointmentsListViewItem extends StatelessWidget {
                       allowHalfRating: true,
                       itemCount: 5,
                       itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                      itemBuilder:  
+                      itemBuilder:
                           (context, _) =>
                               Icon(Icons.star, color: Colors.amber, size: 25),
-                      onRatingUpdate: (rating) {
+                      onRatingUpdate: (value) {
                         setState(() {
-                          rating = rating;
+                          rating = value;
                         });
-                        log('Current rating is: $rating');
                       },
                     ),
                     SizedBox(height: 16.h),
@@ -169,15 +173,39 @@ class MyAppointmentsListViewItem extends StatelessWidget {
                         children: [
                           Expanded(
                             child: TextField(
+                              controller: reviewCubit.review,
+                              onChanged: (_) => setState(() {}),
                               decoration: InputDecoration(
-                                hintText: "type your feedback!....",
+                                hintText: "Type your feedback!...",
                                 hintStyle: TextStyles.font16DarkBlueMedieum
                                     .copyWith(color: Color(0xffC8CDD6)),
                                 border: InputBorder.none,
                               ),
                             ),
                           ),
-                          Icon(Icons.send, color: Color(0xffC8CDD6)),
+                          IconButton(
+                            onPressed:
+                                (rating == 0 || reviewCubit.review.text.isEmpty)
+                                    ? null
+                                    : () {
+                                      Navigator.of(context).pop();
+
+                                      reviewCubit.emitCreateReviewStates(
+                                        rating,
+                                        appointment.student!.id,
+                                        appointment.id,
+                                      );
+                                      appointmentsCubit.getMyAppointments();
+                                    },
+                            icon: Icon(
+                              Icons.send,
+                              color:
+                                  (rating == 0 ||
+                                          reviewCubit.review.text.isEmpty)
+                                      ? Colors.grey
+                                      : ColorsManager.mainBlue,
+                            ),
+                          ),
                         ],
                       ),
                     ),

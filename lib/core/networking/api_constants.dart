@@ -9,6 +9,7 @@ class ApiConstants {
   static const String createAppointment = "order";
   static const String updateUser = "users/updateMe";
   static const String getMyAppointments = "order";
+  static const String createReview = "review";
 }
 
 class ApiErrors {
