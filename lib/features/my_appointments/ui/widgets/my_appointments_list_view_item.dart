@@ -1,13 +1,24 @@
+import 'dart:developer';
+
+import 'package:caredent/core/theme/colors_manager.dart';
 import 'package:caredent/core/theme/text_styless.dart';
 import 'package:caredent/core/utlils/app_images.dart';
+import 'package:caredent/features/my_appointments/data/models/get_my_appointments_response.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 class MyAppointmentsListViewItem extends StatelessWidget {
-  const MyAppointmentsListViewItem({super.key});
+  const MyAppointmentsListViewItem({super.key, required this.appointment});
+  final Order appointment;
 
   @override
   Widget build(BuildContext context) {
+    final isCompleted = appointment.status.toLowerCase() == 'completed';
+    final isUpcoming = appointment.status.toLowerCase() == 'upcoming';
+    final hasStudent = appointment.student != null;
+
     return Container(
       margin: EdgeInsets.all(12.r),
       padding: EdgeInsets.all(12.r),
@@ -33,41 +44,150 @@ class MyAppointmentsListViewItem extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-
           SizedBox(width: 16.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Root Canal Treatment',
+                  appointment.type,
                   style: TextStyles.font16DarkBlueMedieum.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 SizedBox(height: 4.h),
-                Text(
-                  'Dr Mohamed Khaled',
-                  style: TextStyle(fontSize: 14, color: Colors.black54),
-                ),
-                SizedBox(height: 2.h),
-                Text(
-                  'November 10, 2025',
-                  style: TextStyle(fontSize: 14, color: Colors.black45),
-                ),
+                if (isCompleted && hasStudent) ...[
+                  Text(
+                    appointment.student!.fullName,
+                    style: TextStyle(fontSize: 14, color: Colors.black54),
+                  ),
+                  SizedBox(height: 2.h),
+                  Text(
+                    formatDate(appointment.date),
+                    style: TextStyle(fontSize: 14, color: Colors.black45),
+                  ),
+                  SizedBox(height: 2.h),
+                  Text(
+                    appointment.time ?? '',
+                    style: TextStyle(fontSize: 14, color: Colors.black45),
+                  ),
+                ] else ...[
+                  Text(
+                    appointment.status,
+                    style: TextStyle(fontSize: 14, color: Colors.black54),
+                  ),
+                  SizedBox(height: 2.h),
+                  Text(
+                    formatDate(appointment.createdAt),
+                    style: TextStyle(fontSize: 14, color: Colors.black45),
+                  ),
+                ],
               ],
             ),
           ),
-
-          IconButton(
-            onPressed: () {
-              // Function to delete or confirm deletion
-            },
-            icon: Icon(Icons.delete_outline),
-            color: Colors.blue.shade900,
-          ),
+          // الحالة الوحيدة اللي نعرض فيها أيقونة:
+          if (isUpcoming && !hasStudent) //  لو Upcoming ومفيش student
+            IconButton(
+              onPressed: () {
+                // Handle delete here
+              },
+              icon: Icon(Icons.delete_outline),
+              color: Colors.blue.shade900,
+            )
+          else if (isUpcoming && hasStudent) //  لو Upcoming وفي student
+            IconButton(
+              onPressed: () {
+                showRatingPopup(context);
+              },
+              icon: Icon(Icons.check_circle_outline_outlined),
+              color: Colors.blue.shade900,
+            ),
+          // Completed → مفيش أيقونة
         ],
       ),
+    );
+  }
+
+  String formatDate(String? isoDate) {
+    if (isoDate == null) return '';
+    final date = DateTime.tryParse(isoDate);
+    if (date == null) return '';
+    return DateFormat('MMMM d, y').format(date); // November 10, 2025
+  }
+
+  void showRatingPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: const Color(0xFFF9F9F9),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.r),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(20.r),
+            child: StatefulBuilder(
+              builder: (context, setState) {
+                double rating = 0;
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    RatingBar.builder(
+                      initialRating: rating,
+                      minRating: 0,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder:  
+                          (context, _) =>
+                              Icon(Icons.star, color: Colors.amber, size: 25),
+                      onRatingUpdate: (rating) {
+                        setState(() {
+                          rating = rating;
+                        });
+                        log('Current rating is: $rating');
+                      },
+                    ),
+                    SizedBox(height: 16.h),
+                    Text(
+                      "Rate Your Experience",
+                      style: TextStyles.font22WhiteBold.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: ColorsManager.darkBlue,
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 12.w),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25.r),
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: "type your feedback!....",
+                                hintStyle: TextStyles.font16DarkBlueMedieum
+                                    .copyWith(color: Color(0xffC8CDD6)),
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                          Icon(Icons.send, color: Color(0xffC8CDD6)),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -16,6 +16,7 @@ import '../../features/login/data/models/forget_password/forget_pass_email_reque
 import '../../features/login/data/models/forget_password/forget_pass_response.dart';
 import '../../features/login/data/models/verify_password/verify_password_request_body.dart';
 import '../../features/login/data/models/verify_password/verify_password_response.dart';
+import '../../features/my_appointments/data/models/get_my_appointments_response.dart';
 import '../../features/profile/data/models/update_user_request_body.dart';
 import '../../features/profile/data/models/update_user_response.dart';
 part 'api_service.g.dart';
@@ -63,5 +64,10 @@ abstract class ApiService {
   Future<UpdateUserResponse> updateUser(
     @Header('Authorization') String token,
     @Body() UpdateUserRequestBody updateUserRequestBody,
+  );
+
+  @GET(ApiConstants.getMyAppointments)
+  Future<GetMyAppointmentsResponse> getMyAppointments(
+    @Header('Authorization') String token,
   );
 }
