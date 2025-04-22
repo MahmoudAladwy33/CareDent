@@ -10,11 +10,12 @@ platform :android do
     sh "flutter build apk --release --no-tree-shake-icons"
     firebase_app_distribution(
         app: "1:170277646403:android:89f46a5188edca41d7a4f6",
-        firebase_cli_token: "1//03KNokNpXNO7BCgYIARAAGAMSNwF-L9Irtpl1GsdGB5YVHXJO1KP2TsvmNylANGZcXSA-7-28_xBIW-qMhOv6VqA8DvKfDdNDUmA",
+        firebase_cli_token: "1//03al1jCFba_aCCgYIARAAGAMSNwF-L9IrwWI1hU0_yebphl6eHULJpAzKjqwpsKpWHQBdZ5zq8zP24nw56np45EujejZooQmYOqM",
         android_artifact_type: "APK",
         android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
-        testers: "aladwymahmoud@gmail.com,Sheryesam12@gmail.com",
-        release_notes: "added role selection on sign up screen",
+        testers: "aladwymahmoud@gmail.com",
+        release_notes: "patient app done",
+        debug: true
   )
   end
 end
