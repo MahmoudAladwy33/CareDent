@@ -132,6 +132,15 @@ class _UserProfilePicState extends State<UserProfilePic> {
     );
   }
 
+  Future<void> _handleImageUpdate(String newImageUrl) async {
+    final userCubit = context.read<UserCubit>();
+    final updatedUser = userCubit.state.user?.copyWith(profileImg: newImageUrl);
+    if (updatedUser != null) {
+      userCubit.setUser(updatedUser);
+      await saveUserDataLocally(updatedUser);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = context.watch<UserCubit>().state.user;
@@ -139,14 +148,8 @@ class _UserProfilePicState extends State<UserProfilePic> {
     return BlocListener<UpdateUserImageCubit, UpdateUserImageState>(
       listener: (context, state) {
         state.whenOrNull(
-          success: (data) {
-            final updatedUser = context.read<UserCubit>().state.user?.copyWith(
-              profileImg: data.data.profileImg,
-            );
-
-            if (updatedUser != null) {
-              context.read<UserCubit>().setUser(updatedUser);
-            }
+          success: (data) async {
+            await _handleImageUpdate(data.data.profileImg);
           },
         );
       },
