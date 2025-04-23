@@ -23,6 +23,7 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
   role: json['role'] as String,
   healthRecord: json['healthRecord'] as String,
   profileImg: json['profileImg'] as String?,
+  createReport: json['createReport'] as bool,
 );
 
 Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
@@ -33,4 +34,5 @@ Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
   'role': instance.role,
   'healthRecord': instance.healthRecord,
   'profileImg': instance.profileImg,
+  'createReport': instance.createReport,
 };

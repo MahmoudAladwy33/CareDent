@@ -2,21 +2,27 @@ import 'package:caredent/core/routing/app_router.dart';
 import 'package:caredent/core/theme/colors_manager.dart';
 import 'package:caredent/core/theme/text_styless.dart';
 import 'package:caredent/core/utlils/app_images.dart';
+import 'package:caredent/features/settings/ui/widgets/create_report_pop_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/helper/constants.dart';
 import '../../../../core/helper/shared_pref_helper.dart';
+import '../../../../core/logic/user_cubit/user_cubit.dart';
 import '../../../../core/networking/dio_factory.dart';
+import 'show_logout_confirmation_dialog.dart';
 
 class SettingsList extends StatelessWidget {
   const SettingsList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final userCubit = context.watch<UserCubit>().state.user;
+
     return ListView(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
@@ -52,7 +58,9 @@ class SettingsList extends StatelessWidget {
         _buildSettingTile(
           svgAssetPath: AppImages.feedback,
           title: 'Send Feedback',
-          onTap: () {},
+          onTap: () {
+            createReportPopup(context, userCubit!);
+          },
         ),
         _buildSettingTile(
           icon: Icons.support_agent_outlined,
@@ -116,58 +124,4 @@ class SettingsList extends StatelessWidget {
     DioFactory.removeTokenFromHeader();
     GoRouter.of(context).go(AppRouter.kLoginScreen);
   }
-}
-
-/// Show custom logout confirmation dialog styled to match app design
-Future<bool?> showLogoutConfirmationDialog(BuildContext context) {
-  return showDialog<bool>(
-    context: context,
-    builder:
-        (context) => AlertDialog(
-          backgroundColor: ColorsManager.lightGray,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          title: Row(
-            children: [
-              Icon(Icons.logout, color: Colors.red, size: 28),
-              const SizedBox(width: 8),
-              Text(
-                "Log Out",
-                style: TextStyles.font24DarkBlueExtraBold.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          content: const Text(
-            "Are you sure you want to log out?",
-            style: TextStyle(fontSize: 16),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: Text(
-                "Cancel",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 17,
-                  color: ColorsManager.darkBlue,
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: Text(
-                "Log Out",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 17,
-                  color: Colors.red,
-                ),
-              ),
-            ),
-          ],
-        ),
-  );
 }

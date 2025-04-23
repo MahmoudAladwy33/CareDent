@@ -22,6 +22,10 @@ import '../../features/my_appointments/data/models/delete_appoinment/delete_appo
 import '../../features/my_appointments/data/models/get_appoinments/get_my_appointments_response.dart';
 import '../../features/profile/data/models/update_user_request_body.dart';
 import '../../features/profile/data/models/update_user_response.dart';
+import '../../features/settings/data/models/create_report/create_report_request_body.dart';
+import '../../features/settings/data/models/create_report/create_report_response.dart';
+import '../../features/settings/data/models/update_report/update_report_request_body.dart';
+import '../../features/settings/data/models/update_report/update_report_response.dart';
 part 'api_service.g.dart';
 
 @RestApi(baseUrl: ApiConstants.apiBaseUrl)
@@ -84,5 +88,18 @@ abstract class ApiService {
   Future<DeleteAppoinmentResponse> deleteAppointment(
     @Header('Authorization') String token,
     @Path('id') String id,
+  );
+
+  @POST(ApiConstants.createReport)
+  Future<CreateReportResponse> createReport(
+    @Header('Authorization') String token,
+    @Body() CreateReportRequestBody createReportRequestBody,
+  );
+
+  @PUT(ApiConstants.updateReport)
+  Future<UpdateReportResponse> updateReport(
+    @Header('Authorization') String token,
+    @Path('id') String id,
+    @Body() UpdateReportRequestBody updateReportRequestBody,
   );
 }

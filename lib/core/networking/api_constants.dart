@@ -11,6 +11,8 @@ class ApiConstants {
   static const String getMyAppointments = "order";
   static const String createReview = "review";
   static const String deleteAppointment = "order/{id}";
+  static const String createReport = "report";
+  static const String updateReport = "report/{id}";
 }
 
 class ApiErrors {

@@ -1,42 +1,35 @@
 import 'package:json_annotation/json_annotation.dart';
-
-part 'create_review_response.g.dart';
+part 'update_report_response.g.dart';
 
 @JsonSerializable()
-class CreateReviewResponse {
+class UpdateReportResponse {
   final ReviewData data;
 
-  CreateReviewResponse({required this.data});
 
-  factory CreateReviewResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateReviewResponseFromJson(json);
+  UpdateReportResponse({required this.data});
 
-  Map<String, dynamic> toJson() => _$CreateReviewResponseToJson(this);
+  factory UpdateReportResponse.fromJson(Map<String, dynamic> json) =>
+      _$UpdateReportResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UpdateReportResponseToJson(this);
 }
 
 @JsonSerializable()
 class ReviewData {
+   @JsonKey(name: '_id')
+  final String id;
   final String title;
   final dynamic ratings;
-  final String user;
   final String student;
-  final String appointment;
-
-  @JsonKey(name: '_id')
-  final String id;
-
   final String createdAt;
   final String updatedAt;
-
   @JsonKey(name: '__v')
   final int v;
 
   ReviewData({
     required this.title,
     required this.ratings,
-    required this.user,
     required this.student,
-    required this.appointment,
     required this.id,
     required this.createdAt,
     required this.updatedAt,

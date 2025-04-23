@@ -26,6 +26,7 @@ class UserData {
   final String role;
   final String healthRecord;
   final String? profileImg;
+  final bool createReport;
 
   UserData({
     required this.id,
@@ -35,6 +36,7 @@ class UserData {
     required this.role,
     required this.healthRecord,
     this.profileImg,
+    required this.createReport,
   });
 
   factory UserData.fromJson(Map<String, dynamic> json) =>
