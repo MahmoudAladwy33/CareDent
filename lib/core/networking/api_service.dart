@@ -11,6 +11,7 @@ import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import '../../features/book_appointment/data/models/create_appoinment_request_body.dart';
 import '../../features/book_appointment/data/models/create_appoinment_response.dart';
+import '../../features/home/data/models/get_reports/get_reports_model.dart';
 import '../../features/login/data/models/create_new_password/create_new_password_request_body.dart';
 import '../../features/login/data/models/forget_password/forget_pass_email_request_body.dart';
 import '../../features/login/data/models/forget_password/forget_pass_response.dart';
@@ -101,5 +102,10 @@ abstract class ApiService {
     @Header('Authorization') String token,
     @Path('id') String id,
     @Body() UpdateReportRequestBody updateReportRequestBody,
+  );
+
+  @GET(ApiConstants.getReports)
+  Future<GetReportsResponse> getReports(
+    @Header('Authorization') String token,
   );
 }

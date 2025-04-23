@@ -7,6 +7,8 @@ import 'package:caredent/features/sign_up/logic/sign_up_cubit/sign_up_cubit.dart
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../features/home/data/repos/get_reports_repo.dart';
+import '../../features/home/logic/cubit/get_reports_cubit.dart';
 import '../../features/login/data/repos/create_new_password_repo.dart';
 import '../../features/login/data/repos/forget_pass_repo.dart';
 import '../../features/login/data/repos/login_repo.dart';
@@ -137,4 +139,8 @@ Future<void> setupGetIt() async {
     () => UpdateReportRepo(getIt()),
   );
   getIt.registerFactory<UpdateReportCubit>(() => UpdateReportCubit(getIt()));
+
+  //getReports
+  getIt.registerLazySingleton<GetReportsRepo>(() => GetReportsRepo(getIt()));
+  getIt.registerFactory<GetReportsCubit>(() => GetReportsCubit(getIt()));
 }

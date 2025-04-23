@@ -1,23 +1,23 @@
-import 'package:caredent/features/home/ui/widgets/home_screen_body.dart';
 import 'package:caredent/features/my_appointments/ui/my_appointments_screen.dart';
 import 'package:caredent/features/profile/ui/profile_screen.dart';
 import 'package:caredent/features/settings/ui/widgets/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/custom_bottom_nav_bar.dart';
+import 'widgets/home_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  HomeScreenState createState() => HomeScreenState();
+  HomeState createState() => HomeState();
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class HomeState extends State<Home> {
   int _pageIndex = 0;
 
   final List<Widget> _screens = [
-    HomeScreenBody(),
+    HomeScreen(),
     MyAppointmentsScreen(),
     ProfileScreen(),
     SettingsScreen(),
