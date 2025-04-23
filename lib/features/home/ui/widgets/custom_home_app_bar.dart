@@ -1,6 +1,6 @@
 import 'package:caredent/core/models/user_model.dart';
 import 'package:caredent/core/widgets/default_user_img.dart';
-import 'package:caredent/features/home/ui/widgets/reviews_list_view.dart';
+import 'package:caredent/features/home/ui/widgets/get_reports_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -100,7 +100,7 @@ class CustomHomeAppBar extends StatelessWidget {
             ],
           ),
         ),
-        Padding(padding: EdgeInsets.only(top: 238.h), child: ReviewsListView()),
+        GetReportsBlocBuilder(),
       ],
     );
   }

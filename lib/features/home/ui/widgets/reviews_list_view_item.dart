@@ -1,11 +1,13 @@
+import 'package:caredent/features/home/data/models/get_reports/get_reports_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/utlils/app_images.dart';
+import '../../../../core/helper/get_stars_from_rating.dart';
+import 'format_date.dart';
+import 'show_review_bottom_sheet.dart';
 
 class ReviewsListViewItem extends StatelessWidget {
-  const ReviewsListViewItem({super.key});
-
+  const ReviewsListViewItem({super.key, required this.report});
+  final Report report;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,8 +29,8 @@ class ReviewsListViewItem extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(25.r),
-                child: Image.asset(
-                  AppImages.homeProfilePic,
+                child: Image.network(
+                  report.user.profileImg,
                   width: 50.w,
                   height: 50.h,
                   fit: BoxFit.cover,
@@ -40,23 +42,21 @@ class ReviewsListViewItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Robert Fox",
+                    report.user.fullName,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.star, color: Colors.amber, size: 16),
-                      Icon(Icons.star, color: Colors.amber, size: 16),
-                      Icon(Icons.star, color: Colors.amber, size: 16),
-                      Icon(Icons.star, color: Colors.amber, size: 16),
-                      Icon(Icons.star_half, color: Colors.amber, size: 16),
-                      SizedBox(width: 5.w),
-                      Text("(4.0)", style: TextStyle(color: Colors.grey)),
+                      ...getStarsFromRating(report.ratings.toDouble()),
+                      Text(
+                        "(${report.ratings.toString()})",
+                        style: TextStyle(color: Colors.grey),
+                      ),
                     ],
                   ),
                   Text(
-                    "Reviewed On March 4, 2025",
+                    "Reviewed On ${formatDate(report.createdAt)}",
                     style: TextStyle(color: Colors.grey, fontSize: 12),
                   ),
                 ],
@@ -65,18 +65,24 @@ class ReviewsListViewItem extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
           Text(
-            "“The Service Was Great, And The Student Was Very Professional....”",
+            report.title,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(fontSize: 14, color: Colors.black87),
           ),
-          SizedBox(height: 5.h),
-          Text(
-            "Read More",
-            style: TextStyle(
-              color: Colors.blue,
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
+          Spacer(),
+          GestureDetector(
+            onTap: () => showReviewDialog(context, report),
+            child: Text(
+              "Read More",
+              style: TextStyle(
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
             ),
           ),
+          SizedBox(height: 8.h),
         ],
       ),
     );

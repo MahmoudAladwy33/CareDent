@@ -1,11 +1,11 @@
-import 'package:caredent/features/home/data/models/get_reports/get_reports_model.dart';
-import 'package:caredent/features/home/ui/widgets/reviews_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ReviewsListView extends StatelessWidget {
-  const ReviewsListView({super.key, required this.reportList});
-  final List<Report> reportList;
+import 'get_reports_skeletonizer.dart';
+
+class GetReportsSkeleList extends StatelessWidget {
+  const GetReportsSkeleList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,13 +15,13 @@ class ReviewsListView extends StatelessWidget {
         child: ListView.builder(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemCount: reportList.length,
+          itemCount: 5,
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.only(right: 8.w, left: index == 0 ? 10.w : 0),
               child: SizedBox(
                 width: 330.w,
-                child: ReviewsListViewItem(report: reportList[index]),
+                child: const GetReportsSkeletonizer(),
               ),
             );
           },

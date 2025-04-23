@@ -1,7 +1,7 @@
 import 'package:caredent/core/di/service_locator.dart';
 import 'package:caredent/features/book_appointment/logic/cubit/create_appoinment_cubit.dart';
 import 'package:caredent/features/book_appointment/ui/widgets/book_appointment_screen.dart';
-import 'package:caredent/features/home/ui/home_screen.dart';
+import 'package:caredent/features/home/ui/home.dart';
 import 'package:caredent/features/login/logic/create_new_password_cubit/create_new_password_cubit.dart';
 import 'package:caredent/features/login/logic/forget_pass_cubit/forget_password_cubit.dart';
 import 'package:caredent/features/login/logic/login_cubit/login_cubit.dart';
@@ -125,7 +125,7 @@ abstract class AppRouter {
       GoRoute(
         path: kHomeScreen,
         builder: (context, state) {
-          return const HomeScreen();
+          return const Home();
         },
       ),
       GoRoute(
