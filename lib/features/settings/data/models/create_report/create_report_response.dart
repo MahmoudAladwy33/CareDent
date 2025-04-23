@@ -1,17 +1,18 @@
 import 'package:json_annotation/json_annotation.dart';
+part 'create_report_response.g.dart';
 
-part 'create_review_response.g.dart';
 
 @JsonSerializable()
-class CreateReviewResponse {
+class CreateReportResponse {
   final ReviewData data;
+  final String message;
 
-  CreateReviewResponse({required this.data});
+  CreateReportResponse({required this.data, required this.message});
 
-  factory CreateReviewResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateReviewResponseFromJson(json);
+  factory CreateReportResponse.fromJson(Map<String, dynamic> json) =>
+      _$CreateReportResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CreateReviewResponseToJson(this);
+  Map<String, dynamic> toJson() => _$CreateReportResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -19,15 +20,10 @@ class ReviewData {
   final String title;
   final dynamic ratings;
   final String user;
-  final String student;
-  final String appointment;
-
   @JsonKey(name: '_id')
   final String id;
-
   final String createdAt;
   final String updatedAt;
-
   @JsonKey(name: '__v')
   final int v;
 
@@ -35,8 +31,6 @@ class ReviewData {
     required this.title,
     required this.ratings,
     required this.user,
-    required this.student,
-    required this.appointment,
     required this.id,
     required this.createdAt,
     required this.updatedAt,

@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'create_review_response.dart';
+part of 'create_report_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-CreateReviewResponse _$CreateReviewResponseFromJson(
+CreateReportResponse _$CreateReportResponseFromJson(
   Map<String, dynamic> json,
-) => CreateReviewResponse(
+) => CreateReportResponse(
   data: ReviewData.fromJson(json['data'] as Map<String, dynamic>),
+  message: json['message'] as String,
 );
 
-Map<String, dynamic> _$CreateReviewResponseToJson(
-  CreateReviewResponse instance,
-) => <String, dynamic>{'data': instance.data};
+Map<String, dynamic> _$CreateReportResponseToJson(
+  CreateReportResponse instance,
+) => <String, dynamic>{'data': instance.data, 'message': instance.message};
 
 ReviewData _$ReviewDataFromJson(Map<String, dynamic> json) => ReviewData(
   title: json['title'] as String,
   ratings: json['ratings'],
   user: json['user'] as String,
-  student: json['student'] as String,
-  appointment: json['appointment'] as String,
   id: json['_id'] as String,
   createdAt: json['createdAt'] as String,
   updatedAt: json['updatedAt'] as String,
@@ -33,8 +32,6 @@ Map<String, dynamic> _$ReviewDataToJson(ReviewData instance) =>
       'title': instance.title,
       'ratings': instance.ratings,
       'user': instance.user,
-      'student': instance.student,
-      'appointment': instance.appointment,
       '_id': instance.id,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,

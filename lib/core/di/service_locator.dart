@@ -24,6 +24,10 @@ import '../../features/my_appointments/logic/get_appoinments_cubit/get_my_appoin
 import '../../features/profile/data/repos/update_user_repo.dart';
 
 import '../../features/profile/logic/update_user_image_cubit/update_user_image_cubit.dart';
+import '../../features/settings/data/repos/create_report_repo.dart';
+import '../../features/settings/data/repos/update_report_repo.dart';
+import '../../features/settings/logic/create_report_cubit/create_report_cubit.dart';
+import '../../features/settings/logic/update_report_cubit/update_report_cubit.dart';
 import '../../features/sign_up/data/repos/verify_account_repo.dart';
 import '../../features/sign_up/logic/verify_account_cubit/verify_account_cubit.dart';
 import '../logic/user_cubit/user_cubit.dart';
@@ -121,4 +125,16 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<DeleteAppoinmentCubit>(
     () => DeleteAppoinmentCubit(getIt()),
   );
+
+  //CreateReport
+  getIt.registerLazySingleton<CreateReportRepo>(
+    () => CreateReportRepo(getIt()),
+  );
+  getIt.registerFactory<CreateReportCubit>(() => CreateReportCubit(getIt()));
+
+  //updateReport
+  getIt.registerLazySingleton<UpdateReportRepo>(
+    () => UpdateReportRepo(getIt()),
+  );
+  getIt.registerFactory<UpdateReportCubit>(() => UpdateReportCubit(getIt()));
 }
