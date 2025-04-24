@@ -46,12 +46,12 @@ class ReportUser {
   @JsonKey(name: '_id')
   final String id;
   final String fullName;
-  final String profileImg;
+  final String ? profileImg;
 
   ReportUser({
     required this.id,
     required this.fullName,
-    required this.profileImg,
+     this.profileImg,
   });
 
   factory ReportUser.fromJson(Map<String, dynamic> json) =>

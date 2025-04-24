@@ -41,7 +41,7 @@ Map<String, dynamic> _$ReportToJson(Report instance) => <String, dynamic>{
 ReportUser _$ReportUserFromJson(Map<String, dynamic> json) => ReportUser(
   id: json['_id'] as String,
   fullName: json['fullName'] as String,
-  profileImg: json['profileImg'] as String,
+  profileImg: json['profileImg'] as String?,
 );
 
 Map<String, dynamic> _$ReportUserToJson(ReportUser instance) =>

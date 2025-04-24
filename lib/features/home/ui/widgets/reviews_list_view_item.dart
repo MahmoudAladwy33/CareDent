@@ -1,3 +1,4 @@
+import 'package:caredent/core/widgets/default_user_img.dart';
 import 'package:caredent/features/home/data/models/get_reports/get_reports_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,10 +28,13 @@ class ReviewsListViewItem extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
+               report.user.profileImg == null 
+                  ? DefaultUserImg()
+                  :
               ClipRRect(
                 borderRadius: BorderRadius.circular(25.r),
                 child: Image.network(
-                  report.user.profileImg,
+                  report.user.profileImg!,
                   width: 50.w,
                   height: 50.h,
                   fit: BoxFit.cover,

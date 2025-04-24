@@ -43,7 +43,7 @@ class _RoleSelectionState extends State<RoleSelection> {
               children: [
                 _buildRoleButton(
                   context,
-                  "Student",
+                  "student",
                   Icons.school,
                   selectedRole,
                 ),

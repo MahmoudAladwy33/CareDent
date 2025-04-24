@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:caredent/features/home/data/models/get_reports/get_reports_model.dart';
 
 import '../../../../core/helper/get_stars_from_rating.dart';
+import '../../../../core/widgets/default_user_img.dart';
 import 'format_date.dart';
 
 void showReviewDialog(BuildContext context, Report report) {
@@ -50,15 +51,17 @@ void showReviewDialog(BuildContext context, Report report) {
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(25.r),
-                              child: Image.network(
-                                report.user.profileImg,
-                                width: 50.w,
-                                height: 50.h,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                            report.user.profileImg == null
+                                ? DefaultUserImg()
+                                : ClipRRect(
+                                  borderRadius: BorderRadius.circular(25.r),
+                                  child: Image.network(
+                                    report.user.profileImg!,
+                                    width: 50.w,
+                                    height: 50.h,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                             SizedBox(width: 10.w),
                             Column(
                               mainAxisSize: MainAxisSize.min,
