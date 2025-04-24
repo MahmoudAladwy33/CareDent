@@ -1,10 +1,11 @@
-import 'package:caredent/core/theme/colors_manager.dart';
 import 'package:caredent/features/my_appointments/data/models/get_appoinments/get_my_appointments_response.dart';
 import 'package:caredent/features/my_appointments/logic/get_appoinments_cubit/get_my_appointments_cubit.dart';
 import 'package:caredent/features/my_appointments/logic/get_appoinments_cubit/get_my_appointments_state.dart';
 import 'package:caredent/features/my_appointments/ui/widgets/my_appointments_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'my_appointments_list_view_skel.dart';
 
 class MyAppointmentsBlocBuilder extends StatelessWidget {
   const MyAppointmentsBlocBuilder({super.key, required this.selectedFilter});
@@ -18,7 +19,7 @@ class MyAppointmentsBlocBuilder extends StatelessWidget {
       builder: (context, state) {
         return state.maybeWhen(
           loading: () {
-            return setupLoading();
+            return MyAppointmentsListViewSkel();
           },
           success: (orderssData) {
             var appointmentList = List<Order>.from(orderssData);
@@ -39,11 +40,11 @@ class MyAppointmentsBlocBuilder extends StatelessWidget {
     );
   }
 
-  Widget setupLoading() {
-    return const Center(
-      child: CircularProgressIndicator(color: ColorsManager.mainBlue),
-    );
-  }
+  // Widget setupLoading() {
+  //   return const Center(
+  //     child: CircularProgressIndicator(color: ColorsManager.mainBlue),
+  //   );
+  // }
 
   Widget setupSuccess(List<Order> appointmentList) {
     return MyAppointmentsListView(appointmentList: appointmentList);
