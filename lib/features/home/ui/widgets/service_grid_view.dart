@@ -3,10 +3,12 @@ import 'package:caredent/features/home/data/models/service_card_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/models/user_model.dart';
 import 'service_card.dart';
 
 class ServiceGridView extends StatelessWidget {
-  const ServiceGridView({super.key});
+  const ServiceGridView({super.key, required this.user});
+  final UserModel user;
   final List<ServiceCardModel> serviceCards = const [
     ServiceCardModel(
       image: AppImages.serviceCardToothExtraction,
@@ -91,7 +93,7 @@ class ServiceGridView extends StatelessWidget {
         ),
         itemCount: serviceCards.length,
         itemBuilder: (context, index) {
-          return ServiceCard(serviceCardModel: serviceCards[index]);
+          return  ServiceCard(serviceCardModel: serviceCards[index] , user: user);
         },
       ),
     );

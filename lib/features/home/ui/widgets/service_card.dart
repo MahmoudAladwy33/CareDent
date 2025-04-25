@@ -4,21 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/models/user_model.dart';
 import '../../../../core/routing/app_router.dart';
 
 class ServiceCard extends StatelessWidget {
-  const ServiceCard({super.key, required this.serviceCardModel});
+  const ServiceCard({
+    super.key,
+    required this.serviceCardModel,
+    required this.user,
+  });
   final ServiceCardModel serviceCardModel;
-
+  final UserModel user;
   @override
   Widget build(BuildContext context) {
     final hasSecondTitle = serviceCardModel.title2.trim().isNotEmpty;
 
     return GestureDetector(
       onTap: () {
-        GoRouter.of(
-          context,
-        ).push(AppRouter.kBookAppointment, extra: serviceCardModel);
+        user.role == "student"
+            ? GoRouter.of(context).push(AppRouter.kAvailableAppointments , extra: serviceCardModel)
+            : GoRouter.of(
+              context,
+            ).push(AppRouter.kBookAppointment, extra: serviceCardModel);
       },
       child: Container(
         padding: EdgeInsets.all(12.r),

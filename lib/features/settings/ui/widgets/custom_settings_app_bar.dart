@@ -10,43 +10,48 @@ class CustomSettingsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Stack(
-              children: [
-                Image.asset(AppImages.settingsBackground),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 50.h),
-                        child: Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                // GoRouter.of(context).push(AppRouter.kHomeScreen);
-                              },
-                              icon: const Icon(
-                                Icons.arrow_back_ios_new,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text(
-                              'Settings',
-                              style: TextStyles.font18DarkBlueSemiBold.copyWith(
-                                color: Colors.white,
-                                letterSpacing: 1.7,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
+    return Stack(
+      children: [
+        Image.asset(
+          AppImages.settingsBackground,
+          width: double.infinity,
+          height: 155.h,
+          fit: BoxFit.cover,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 50.h),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        // GoRouter.of(context).push(AppRouter.kHomeScreen);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new,
+                        color: Colors.white,
                       ),
-                      SizedBox(height: 25.h),
-                    ],
-                  ),
+                    ),
+                    Text(
+                      'Settings',
+                      style: TextStyles.font18DarkBlueSemiBold.copyWith(
+                        color: Colors.white,
+                        letterSpacing: 1.7,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            );
+              ),
+              SizedBox(height: 25.h),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }

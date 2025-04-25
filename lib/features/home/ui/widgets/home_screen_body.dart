@@ -31,7 +31,9 @@ class HomeScreenBody extends StatelessWidget {
             SizedBox(height: 32.h),
             PickAServiceText(),
             SizedBox(height: 20.h),
-            ServiceGridView(),
+            ServiceGridView(
+              user: user,
+            ),
             SizedBox(height: 16.h),
           ],
         ),

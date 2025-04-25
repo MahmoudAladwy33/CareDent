@@ -2,6 +2,7 @@ import 'package:caredent/core/di/service_locator.dart';
 import 'package:caredent/features/book_appointment/logic/cubit/create_appoinment_cubit.dart';
 import 'package:caredent/features/book_appointment/ui/widgets/book_appointment_screen.dart';
 import 'package:caredent/features/home/ui/home.dart';
+import 'package:caredent/features/home/ui/widgets/student/available_appointments_screen.dart';
 import 'package:caredent/features/login/logic/create_new_password_cubit/create_new_password_cubit.dart';
 import 'package:caredent/features/login/logic/forget_pass_cubit/forget_password_cubit.dart';
 import 'package:caredent/features/login/logic/login_cubit/login_cubit.dart';
@@ -33,6 +34,7 @@ abstract class AppRouter {
   static const kVerifyAccount = '/verify-account';
   static const kHomeScreen = '/home';
   static const kBookAppointment = '/book-appointment';
+  static const kAvailableAppointments = '/available-appointments';
 
   static final router = GoRouter(
     routes: [
@@ -135,6 +137,15 @@ abstract class AppRouter {
           return BlocProvider(
             create: (context) => getIt<CreateAppoinmentCubit>(),
             child: BookAppointmentScreen(serviceCardModel: serviceCardModel),
+          );
+        },
+      ),
+      GoRoute(
+        path: kAvailableAppointments,
+        builder: (context, state) {
+          final serviceCardModel = state.extra as ServiceCardModel;
+          return AvailableAppointmentsScreen(
+            serviceCardModel: serviceCardModel,
           );
         },
       ),
