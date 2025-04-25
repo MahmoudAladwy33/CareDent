@@ -39,12 +39,19 @@ class CustomHomeAppBar extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 6.h),
-                      Text(
-                        user.name,
-                        style: TextStyles.font20WhiteSemiBold.copyWith(
-                          letterSpacing: 1.7,
-                        ),
-                      ),
+                      user.role == 'student'
+                          ? Text(
+                            'Dr. ${user.name}',
+                            style: TextStyles.font20WhiteSemiBold.copyWith(
+                              letterSpacing: 1.7,
+                            ),
+                          )
+                          : Text(
+                            user.name,
+                            style: TextStyles.font20WhiteSemiBold.copyWith(
+                              letterSpacing: 1.7,
+                            ),
+                          ),
                     ],
                   ),
                   Padding(

@@ -46,4 +46,6 @@ class AppImages {
   static const settingsBackground = 'assets/images/settings_app_bar.png';
   static const feedback = 'assets/images/feedback.svg';
   static const about = 'assets/images/about.svg';
+  static const availableAppointmentsBG =
+      'assets/images/available_appointments_bg.png';
 }
