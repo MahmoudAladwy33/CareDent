@@ -1,10 +1,9 @@
-import 'package:caredent/features/home/ui/widgets/student/available_appointments_requests_list_view.dart';
+import 'package:caredent/features/get_available_appointments/ui/widgets/get_available_appointments_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/theme/text_styless.dart';
-import '../../../../../core/utlils/app_images.dart';
-import '../../../data/models/service_card_model.dart';
+import '../../../../core/theme/text_styless.dart';
+import '../../../../core/utlils/app_images.dart';
+import '../../../home/data/models/service_card_model.dart';
 
 class CustomAvailableAppointmentsAppBar extends StatelessWidget {
   const CustomAvailableAppointmentsAppBar({
@@ -60,7 +59,9 @@ class CustomAvailableAppointmentsAppBar extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              AvailableAppointmentsRequestsListView(),
+             GetAvailableAppointmentsBlocBuilder(
+              selectedFilter: serviceCardModel.type,
+             ),
             ],
           ),
         ),

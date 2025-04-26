@@ -1,10 +1,15 @@
+import 'package:caredent/core/widgets/default_user_img.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/theme/text_styless.dart';
-import '../../../../../core/utlils/app_images.dart';
+import '../../../../core/theme/text_styless.dart';
+import '../../data/models/get_available_appointments_response.dart';
 
 class AvailableAppointmentsRequestsListViewItem extends StatelessWidget {
-  const AvailableAppointmentsRequestsListViewItem({super.key});
+  const AvailableAppointmentsRequestsListViewItem({
+    super.key,
+    required this.availableAppointment,
+  });
+  final Appointment availableAppointment;
 
   @override
   Widget build(BuildContext context) {
@@ -27,22 +32,26 @@ class AvailableAppointmentsRequestsListViewItem extends StatelessWidget {
         children: [
           Row(
             children: [
-              CircleAvatar(
-                radius: 24.r,
-                backgroundImage: AssetImage(AppImages.homeProfilePic),
-              ),
+              availableAppointment.user.profileImg == null
+                  ? DefaultUserImg()
+                  : CircleAvatar(
+                    radius: 24.r,
+                    backgroundImage: NetworkImage(
+                      availableAppointment.user.profileImg!,
+                    ),
+                  ),
               SizedBox(width: 12.w),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Mohamed Ahmed',
+                      availableAppointment.user.fullName,
                       style: TextStyles.font16DarkBlueMedieum,
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      '011236573987 - Diabetes',
+                      '${availableAppointment.user.phone} - ${availableAppointment.user.healthRecord}',
                       style: TextStyle(
                         fontSize: 13.sp,
                         color: Colors.grey[600],
@@ -55,24 +64,7 @@ class AvailableAppointmentsRequestsListViewItem extends StatelessWidget {
           ),
           SizedBox(height: 16.h),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: Color(0xff045fc9)),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                  ),
-                  child: Text(
-                    'Cancel',
-                    style: TextStyle(color: Color(0xff045fc9), fontSize: 14.sp),
-                  ),
-                ),
-              ),
-              SizedBox(width: 12.w),
               Expanded(
                 child: ElevatedButton.icon(
                   onPressed: () {},

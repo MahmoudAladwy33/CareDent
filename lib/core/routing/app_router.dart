@@ -1,8 +1,9 @@
 import 'package:caredent/core/di/service_locator.dart';
 import 'package:caredent/features/book_appointment/logic/cubit/create_appoinment_cubit.dart';
 import 'package:caredent/features/book_appointment/ui/widgets/book_appointment_screen.dart';
+import 'package:caredent/features/get_available_appointments/logic/cubit/get_available_appointments_cubit.dart';
 import 'package:caredent/features/home/ui/home.dart';
-import 'package:caredent/features/home/ui/widgets/student/available_appointments_screen.dart';
+import 'package:caredent/features/get_available_appointments/ui/widgets/available_appointments_screen.dart';
 import 'package:caredent/features/login/logic/create_new_password_cubit/create_new_password_cubit.dart';
 import 'package:caredent/features/login/logic/forget_pass_cubit/forget_password_cubit.dart';
 import 'package:caredent/features/login/logic/login_cubit/login_cubit.dart';
@@ -144,8 +145,19 @@ abstract class AppRouter {
         path: kAvailableAppointments,
         builder: (context, state) {
           final serviceCardModel = state.extra as ServiceCardModel;
-          return AvailableAppointmentsScreen(
-            serviceCardModel: serviceCardModel,
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => getIt<GetAvailableAppointmentsCubit>()..getAvailableAppointments(),
+              ),
+              // BlocProvider(
+              //   create: (context) => SubjectBloc(),
+              // ),
+            ],
+
+            child: AvailableAppointmentsScreen(
+              serviceCardModel: serviceCardModel,
+            ),
           );
         },
       ),

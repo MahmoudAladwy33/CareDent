@@ -14,6 +14,7 @@ class ApiConstants {
   static const String createReport = "report";
   static const String updateReport = "report/{id}";
   static const String getReports = "report";
+  static const String getAvailableAppointments = "order/student/available";
 }
 
 class ApiErrors {
