@@ -24,6 +24,7 @@ import '../../features/my_appointments/data/models/create_review/create_review_r
 import '../../features/my_appointments/data/models/create_review/create_review_response.dart';
 import '../../features/my_appointments/data/models/delete_appoinment/delete_appoinment_response.dart';
 import '../../features/my_appointments/data/models/get_appoinments/get_my_appointments_response.dart';
+import '../../features/my_appointments/data/models/get_student_appointments/get_student_appointments_response.dart';
 import '../../features/profile/data/models/update_user_request_body.dart';
 import '../../features/profile/data/models/update_user_response.dart';
 import '../../features/settings/data/models/create_report/create_report_request_body.dart';
@@ -121,5 +122,10 @@ abstract class ApiService {
   Future<AcceptAppointmentResponse> acceptAppointment(
     @Header('Authorization') String token,
     @Body() AcceptAppointmetRequestBody acceptAppointmetRequestBody,
+  );
+
+  @GET(ApiConstants.getStudentAppointments)
+  Future<GetStudentAppointmentsResponse> getStudentAppointments(
+    @Header('Authorization') String token,
   );
 }

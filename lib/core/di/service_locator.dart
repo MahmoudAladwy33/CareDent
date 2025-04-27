@@ -24,9 +24,11 @@ import '../../features/login/logic/verify_pass_cubit/verify_password_cubit.dart'
 import '../../features/my_appointments/data/repos/create_review_repo.dart';
 import '../../features/my_appointments/data/repos/delete_appointment_repo.dart';
 import '../../features/my_appointments/data/repos/get_my_appointments_repo.dart';
+import '../../features/my_appointments/data/repos/get_student_appointments_repo.dart';
 import '../../features/my_appointments/logic/create_review_cubit/create_review_cubit.dart';
 import '../../features/my_appointments/logic/delete_appoinment_cubit/delete_appoinment_cubit.dart';
 import '../../features/my_appointments/logic/get_appoinments_cubit/get_my_appointments_cubit.dart';
+import '../../features/my_appointments/logic/get_student_appointments_cubit/get_student_appointments_cubit.dart';
 import '../../features/profile/data/repos/update_user_repo.dart';
 
 import '../../features/profile/logic/update_user_image_cubit/update_user_image_cubit.dart';
@@ -162,5 +164,13 @@ Future<void> setupGetIt() async {
   );
   getIt.registerFactory<AcceptAppointmentCubit>(
     () => AcceptAppointmentCubit(getIt()),
+  );
+
+  //getStudentAppointments
+  getIt.registerLazySingleton<GetStudentAppointmentsRepo>(
+    () => GetStudentAppointmentsRepo(getIt()),
+  );
+  getIt.registerFactory<GetStudentAppointmentsCubit>(
+    () => GetStudentAppointmentsCubit(getIt()),
   );
 }

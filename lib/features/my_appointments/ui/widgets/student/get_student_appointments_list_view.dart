@@ -1,9 +1,9 @@
-import 'package:caredent/features/my_appointments/data/models/get_appoinments/get_my_appointments_response.dart';
 import 'package:flutter/material.dart';
-import 'my_appointments_list_view_item.dart';
+import '../../../data/models/get_student_appointments/get_student_appointments_response.dart';
+import 'get_student_appointments_list_view_item.dart';
 
-class MyAppointmentsListView extends StatelessWidget {
-  const MyAppointmentsListView({super.key, required this.appointmentList});
+class GetStudentAppointmentsListView extends StatelessWidget {
+  const GetStudentAppointmentsListView({super.key, required this.appointmentList});
   final List<Order> appointmentList;
 
   @override
@@ -28,7 +28,7 @@ class MyAppointmentsListView extends StatelessWidget {
       itemBuilder: (context, index) {
         int reverseIndex = appointmentList.length - 1 - index;
 
-        return MyAppointmentsListViewItem(
+        return GetStudentAppointmentsListViewItem(
           appointment: appointmentList[reverseIndex],
         );
       },
