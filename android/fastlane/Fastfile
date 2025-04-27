@@ -14,8 +14,8 @@ platform :android do
         android_artifact_type: "APK",
         android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
         testers: "aladwymahmoud@gmail.com",
-        release_notes: "patient app done",
-        debug: true
+        release_notes: "student app done except 20%",
+        upload_timeout: 600 
   )
   end
 end
