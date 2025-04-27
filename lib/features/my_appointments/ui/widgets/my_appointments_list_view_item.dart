@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import '../../logic/delete_appoinment_cubit/delete_appoinment_cubit.dart';
-import '../../logic/get_appoinments_cubit/get_my_appointments_cubit.dart';
 import 'show_delete_confirmation_dialog.dart';
 import 'show_rating_popup.dart';
 
@@ -93,13 +92,8 @@ class MyAppointmentsListViewItem extends StatelessWidget {
                   context,
                 );
                 if (shouldDelete == true) {
-                  final deleteCubit = BlocProvider.of<DeleteAppoinmentCubit>(
-                    context,
-                  );
+                  final deleteCubit = context.read<DeleteAppoinmentCubit>();
                   deleteCubit.emitDeletAppoinmentStates(appointment.id);
-                  BlocProvider.of<GetMyAppointmentsCubit>(
-                    context,
-                  ).getMyAppointments();
                 }
               },
               icon: Icon(Icons.delete_outline),

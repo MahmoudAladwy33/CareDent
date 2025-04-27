@@ -1,6 +1,7 @@
 import 'package:caredent/core/di/service_locator.dart';
 import 'package:caredent/features/book_appointment/logic/cubit/create_appoinment_cubit.dart';
 import 'package:caredent/features/book_appointment/ui/widgets/book_appointment_screen.dart';
+import 'package:caredent/features/get_available_appointments/logic/cubit/accept_appointment_cubit.dart';
 import 'package:caredent/features/get_available_appointments/logic/cubit/get_available_appointments_cubit.dart';
 import 'package:caredent/features/home/ui/home.dart';
 import 'package:caredent/features/get_available_appointments/ui/widgets/available_appointments_screen.dart';
@@ -148,11 +149,14 @@ abstract class AppRouter {
           return MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) => getIt<GetAvailableAppointmentsCubit>()..getAvailableAppointments(),
+                create:
+                    (context) =>
+                        getIt<GetAvailableAppointmentsCubit>()
+                          ..getAvailableAppointments(),
               ),
-              // BlocProvider(
-              //   create: (context) => SubjectBloc(),
-              // ),
+              BlocProvider(
+                create: (context) => getIt<AcceptAppointmentCubit>(),
+              ),
             ],
 
             child: AvailableAppointmentsScreen(

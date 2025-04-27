@@ -1,3 +1,4 @@
+import 'package:caredent/features/get_available_appointments/ui/widgets/accept_appointment_bloc_listener.dart';
 import 'package:caredent/features/get_available_appointments/ui/widgets/custom_available_appointments_app_bar.dart';
 import 'package:flutter/material.dart';
 import '../../../home/data/models/service_card_model.dart';
@@ -17,6 +18,7 @@ class AvailableAppointmentsScreen extends StatelessWidget {
             CustomAvailableAppointmentsAppBar(
               serviceCardModel: serviceCardModel,
             ),
+            AcceptAppointmentBlocListener(),
           ],
         ),
       ),

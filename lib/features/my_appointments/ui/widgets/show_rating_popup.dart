@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/theme/colors_manager.dart';
 import '../../../../core/theme/text_styless.dart';
 import '../../data/models/get_appoinments/get_my_appointments_response.dart';
 import '../../logic/create_review_cubit/create_review_cubit.dart';
-import '../../logic/get_appoinments_cubit/get_my_appointments_cubit.dart';
 
 
 void showRatingPopup(BuildContext context, Order appointment) {
-  final reviewCubit = BlocProvider.of<CreateReviewCubit>(context);
-  final appointmentsCubit = BlocProvider.of<GetMyAppointmentsCubit>(context);
+  final reviewCubit = context.read<CreateReviewCubit>();
+  
   double rating = 0;
 
   showDialog(
@@ -87,7 +85,7 @@ void showRatingPopup(BuildContext context, Order appointment) {
                                       appointment.student!.id,
                                       appointment.id,
                                     );
-                                    appointmentsCubit.getMyAppointments();
+                                   
                                   },
                           icon: Icon(
                             Icons.send,

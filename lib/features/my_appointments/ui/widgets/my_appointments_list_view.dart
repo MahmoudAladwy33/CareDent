@@ -27,7 +27,11 @@ class MyAppointmentsListView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: appointmentList.length,
       itemBuilder: (context, index) {
-        return MyAppointmentsListViewItem(appointment: appointmentList[index]);
+        int reverseIndex = appointmentList.length - 1 - index;
+
+        return MyAppointmentsListViewItem(
+          appointment: appointmentList[reverseIndex],
+        );
       },
     );
   }
