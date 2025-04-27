@@ -1,4 +1,6 @@
 import 'package:caredent/core/networking/api_constants.dart';
+import 'package:caredent/features/get_available_appointments/data/models/accept_appointment_response.dart';
+import 'package:caredent/features/get_available_appointments/data/models/accept_appointmet_request_body.dart';
 import 'package:caredent/features/login/data/models/create_new_password/create_new_password_response.dart';
 import 'package:caredent/features/login/data/models/login/login_request_body.dart';
 import 'package:caredent/features/login/data/models/login/login_response_body.dart';
@@ -113,5 +115,11 @@ abstract class ApiService {
   @GET(ApiConstants.getAvailableAppointments)
   Future<GetAvailableAppointmentsResponse> getAvailableAppointments(
     @Header('Authorization') String token,
+  );
+
+  @POST(ApiConstants.acceptAppointment)
+  Future<AcceptAppointmentResponse> acceptAppointment(
+    @Header('Authorization') String token,
+    @Body() AcceptAppointmetRequestBody acceptAppointmetRequestBody,
   );
 }

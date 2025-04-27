@@ -28,18 +28,18 @@ class ReviewsListViewItem extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-               report.user.profileImg == null 
+              report.user.profileImg == null 
                   ? DefaultUserImg()
                   :
-              ClipRRect(
-                borderRadius: BorderRadius.circular(25.r),
-                child: Image.network(
-                  report.user.profileImg!,
-                  width: 50.w,
-                  height: 50.h,
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(25.r),
+                    child: Image.network(
+                      report.user.profileImg!,
+                      width: 50.w,
+                      height: 50.h,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
               SizedBox(width: 10.w),
               Column(
                 mainAxisSize: MainAxisSize.min,
