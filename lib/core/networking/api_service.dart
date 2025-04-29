@@ -14,6 +14,7 @@ import 'package:retrofit/http.dart';
 import '../../features/book_appointment/data/models/create_appoinment_request_body.dart';
 import '../../features/book_appointment/data/models/create_appoinment_response.dart';
 import '../../features/get_available_appointments/data/models/get_available_appointments_response.dart';
+import '../../features/home/data/models/get_all_reviews_on_specific_student/get_all_reviews_on_specific_student_response.dart' show GetAllReviewsOnSpecificStudentResponse;
 import '../../features/home/data/models/get_reports/get_reports_model.dart';
 import '../../features/login/data/models/create_new_password/create_new_password_request_body.dart';
 import '../../features/login/data/models/forget_password/forget_pass_email_request_body.dart';
@@ -127,5 +128,11 @@ abstract class ApiService {
   @GET(ApiConstants.getStudentAppointments)
   Future<GetStudentAppointmentsResponse> getStudentAppointments(
     @Header('Authorization') String token,
+  );
+
+  @GET(ApiConstants.getAllReviewsOnSpecificStudent)
+  Future<GetAllReviewsOnSpecificStudentResponse> getAllReviewsOnSpecificStudent(
+    @Header('Authorization') String token,
+    @Path('id') String id,
   );
 }

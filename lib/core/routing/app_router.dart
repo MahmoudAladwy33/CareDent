@@ -3,8 +3,10 @@ import 'package:caredent/features/book_appointment/logic/cubit/create_appoinment
 import 'package:caredent/features/book_appointment/ui/widgets/book_appointment_screen.dart';
 import 'package:caredent/features/get_available_appointments/logic/cubit/accept_appointment_cubit.dart';
 import 'package:caredent/features/get_available_appointments/logic/cubit/get_available_appointments_cubit.dart';
+import 'package:caredent/features/home/logic/get_all_reviews_on_specific_student_cubit/get_all_reviews_on_specific_student_cubit.dart';
 import 'package:caredent/features/home/ui/home.dart';
 import 'package:caredent/features/get_available_appointments/ui/widgets/available_appointments_screen.dart';
+import 'package:caredent/features/home/ui/widgets/view_all_screen_body.dart';
 import 'package:caredent/features/login/logic/create_new_password_cubit/create_new_password_cubit.dart';
 import 'package:caredent/features/login/logic/forget_pass_cubit/forget_password_cubit.dart';
 import 'package:caredent/features/login/logic/login_cubit/login_cubit.dart';
@@ -24,6 +26,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/home/data/models/service_card_model.dart';
+import '../logic/user_cubit/user_cubit.dart';
 
 abstract class AppRouter {
   static const kOnBoardingScreen = '/onboarding';
@@ -37,6 +40,7 @@ abstract class AppRouter {
   static const kHomeScreen = '/home';
   static const kBookAppointment = '/book-appointment';
   static const kAvailableAppointments = '/available-appointments';
+  static const kViewAll = '/view-all';
 
   static final router = GoRouter(
     routes: [
@@ -162,6 +166,19 @@ abstract class AppRouter {
             child: AvailableAppointmentsScreen(
               serviceCardModel: serviceCardModel,
             ),
+          );
+        },
+      ),
+      GoRoute(
+        path: kViewAll,
+        builder: (context, state) {
+          final user = context.watch<UserCubit>().state.user;
+          return BlocProvider(
+            create:
+                (context) =>
+                    getIt<GetAllReviewsOnSpecificStudentCubit>()
+                      ..getReports(user!.id),
+            child: const ViewAllScreenBody(),
           );
         },
       ),

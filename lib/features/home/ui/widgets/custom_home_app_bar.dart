@@ -99,7 +99,7 @@ class CustomHomeAppBar extends StatelessWidget {
               ),
               SizedBox(height: 28.h),
               Text(
-                'What our patients say',
+                'App Reviews',
                 style: TextStyles.font16DarkBlueMedieum.copyWith(
                   color: Colors.white,
                 ),

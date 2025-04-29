@@ -27,13 +27,11 @@ class HomeScreenBody extends StatelessWidget {
           children: [
             CustomHomeAppBar(user: user),
             SizedBox(height: 18.h),
-            ViewAll(),
+            user.role == 'student' ? ViewAll() : const SizedBox.shrink(),
             SizedBox(height: 32.h),
             PickAServiceText(),
             SizedBox(height: 20.h),
-            ServiceGridView(
-              user: user,
-            ),
+            ServiceGridView(user: user),
             SizedBox(height: 16.h),
           ],
         ),
