@@ -13,8 +13,8 @@ platform :android do
         firebase_cli_token: "1//03al1jCFba_aCCgYIARAAGAMSNwF-L9IrwWI1hU0_yebphl6eHULJpAzKjqwpsKpWHQBdZ5zq8zP24nw56np45EujejZooQmYOqM",
         android_artifact_type: "APK",
         android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
-        testers: "aladwymahmoud@gmail.com",
-        release_notes: "student app done except 20%",
+        testers: "aladwymahmoud@gmail.com,Sheryesam12@gmail.com",
+        release_notes: "App first Version",
         upload_timeout: 600 
   )
   end
