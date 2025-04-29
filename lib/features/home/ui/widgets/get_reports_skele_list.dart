@@ -5,7 +5,6 @@ import 'get_reports_skeletonizer.dart';
 
 class GetReportsSkeleList extends StatelessWidget {
   const GetReportsSkeleList({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Padding(

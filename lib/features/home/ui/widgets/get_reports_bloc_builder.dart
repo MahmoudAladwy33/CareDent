@@ -2,8 +2,8 @@ import 'package:caredent/features/home/data/models/get_reports/get_reports_model
 import 'package:caredent/features/home/ui/widgets/reviews_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../logic/cubit/get_reports_cubit.dart';
-import '../../logic/cubit/get_reports_state.dart';
+import '../../logic/get_reports_cubit/get_reports_cubit.dart';
+import '../../logic/get_reports_cubit/get_reports_state.dart';
 import 'get_reports_skele_list.dart';
 
 class GetReportsBlocBuilder extends StatelessWidget {
