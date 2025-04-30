@@ -21,7 +21,9 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
   phone: json['Phone'] as String,
   email: json['Email'] as String,
   role: json['role'] as String,
-  healthRecord: json['healthRecord'] as String,
+  healthRecord: json['healthRecord'] as String?,
+  skills: json['skills'] as String?,
+  year: json['year'] as String?,
   profileImg: json['profileImg'] as String?,
   createReport: json['createReport'] as bool,
 );
@@ -35,4 +37,6 @@ Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
   'healthRecord': instance.healthRecord,
   'profileImg': instance.profileImg,
   'createReport': instance.createReport,
+  'skills': instance.skills,
+  'year': instance.year,
 };

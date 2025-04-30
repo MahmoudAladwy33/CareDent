@@ -12,6 +12,8 @@ UpdateUserRequestBody _$UpdateUserRequestBodyFromJson(
   fullName: json['fullName'] as String?,
   phone: json['Phone'] as String?,
   healthRecord: json['healthRecord'] as String?,
+  skills: json['skills'] as String?,
+  year: json['year'] as String?,
 );
 
 Map<String, dynamic> _$UpdateUserRequestBodyToJson(
@@ -20,4 +22,6 @@ Map<String, dynamic> _$UpdateUserRequestBodyToJson(
   'fullName': instance.fullName,
   'Phone': instance.phone,
   'healthRecord': instance.healthRecord,
+  'skills': instance.skills,
+  'year': instance.year,
 };

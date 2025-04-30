@@ -2,18 +2,21 @@ class UserModel {
   final String name;
   final String email;
   final String phone;
-  final String healthRecord;
+  final String? healthRecord;
+  final String? year;
+  final String? skills;
   final String? profileImg;
   final bool createReport;
   final String role;
   final String id;
-  
 
   UserModel({
     required this.name,
     required this.email,
     required this.phone,
-    required this.healthRecord,
+    this.healthRecord,
+    this.year,
+    this.skills,
     this.profileImg,
     required this.createReport,
     required this.role,
@@ -29,7 +32,9 @@ class UserModel {
       profileImg: json['profileImg'] ?? '',
       createReport: json['createReport'] ?? false,
       role: json['role'] ?? '',
-      id: json['_id'] ?? '', 
+      id: json['_id'] ?? '',
+      year: json['year'] ?? '',
+      skills: json['skills'] ?? '',
     );
   }
   Map<String, dynamic> toJson() {
@@ -42,6 +47,8 @@ class UserModel {
       'createReport': createReport,
       'role': role,
       '_id': id,
+      'year': year,
+      'skills': skills,
     };
   }
 
@@ -54,6 +61,8 @@ class UserModel {
     bool? createReport,
     String? role,
     String? id,
+    String? year,
+    String? skills,
   }) {
     return UserModel(
       name: name ?? this.name,
@@ -64,6 +73,8 @@ class UserModel {
       createReport: createReport ?? this.createReport,
       role: role ?? this.role,
       id: id ?? this.id,
+      year: year ?? this.year,
+      skills: skills ?? this.skills,
     );
   }
 }

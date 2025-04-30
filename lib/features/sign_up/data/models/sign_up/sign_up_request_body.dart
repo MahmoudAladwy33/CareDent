@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-  part 'sign_up_request_body.g.dart';
+part 'sign_up_request_body.g.dart';
 
 @JsonSerializable()
 class SignupRequestBody {
@@ -12,8 +12,10 @@ class SignupRequestBody {
   final String passwordConfirm;
   final String dateOfBirth;
   final String gender;
-   final String role;
-  final String healthRecord;
+  final String role;
+  final String? healthRecord;
+  final String? skills;
+  final String? year;
 
   SignupRequestBody({
     required this.fullName,
@@ -23,7 +25,9 @@ class SignupRequestBody {
     required this.passwordConfirm,
     required this.dateOfBirth,
     required this.gender,
-    required this.healthRecord,
+    this.healthRecord,
+    this.skills,
+    this.year,
     required this.role,
   });
 

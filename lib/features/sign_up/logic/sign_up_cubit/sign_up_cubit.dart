@@ -21,6 +21,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   TextEditingController genderController = TextEditingController();
   TextEditingController roleController = TextEditingController();
   TextEditingController healthRecordController = TextEditingController();
+  TextEditingController skillsController = TextEditingController();
+  TextEditingController academicController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   void updateDateOfBirth(int? day, int? month, int? year) {
@@ -95,6 +97,8 @@ class SignUpCubit extends Cubit<SignUpState> {
         gender: genderController.text,
         role: roleController.text,
         healthRecord: healthRecordController.text,
+        skills: skillsController.text,
+        year: academicController.text,
       ),
     );
 

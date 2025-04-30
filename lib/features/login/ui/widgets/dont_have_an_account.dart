@@ -13,7 +13,7 @@ class DontHaveAnAccount extends StatelessWidget {
       title: 'Don\'t have an account?',
       buttonName: 'Sign Up',
       onPressed: () {
-        GoRouter.of(context).push(AppRouter.kSignUpScreen);
+        GoRouter.of(context).push(AppRouter.kRoleSelection);
       },
     );
   }

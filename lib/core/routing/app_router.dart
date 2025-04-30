@@ -20,6 +20,7 @@ import 'package:caredent/features/sign_up/logic/sign_up_cubit/sign_up_cubit.dart
 import 'package:caredent/features/sign_up/logic/verify_account_cubit/verify_account_cubit.dart';
 import 'package:caredent/features/sign_up/ui/sign_up_screen.dart';
 import 'package:caredent/features/sign_up/ui/widgets/sign_up/create_account_screen_body.dart';
+import 'package:caredent/features/sign_up/ui/widgets/sign_up/role_selection_screen_body.dart';
 import 'package:caredent/features/sign_up/ui/widgets/verify_account/verify_account_screen_body.dart';
 import 'package:caredent/features/splash_view/splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,6 +42,7 @@ abstract class AppRouter {
   static const kBookAppointment = '/book-appointment';
   static const kAvailableAppointments = '/available-appointments';
   static const kViewAll = '/view-all';
+  static const kRoleSelection = '/role-selection';
 
   static final router = GoRouter(
     routes: [
@@ -65,24 +67,36 @@ abstract class AppRouter {
           );
         },
       ),
-
       GoRoute(
-        path: kSignUpScreen,
+        path: kRoleSelection,
         builder: (context, state) {
           return BlocProvider(
             create: (context) => getIt<SignUpCubit>(),
-            child: const SignUpScreen(),
+            child: const RoleSelectionScreenBody(),
           );
+        },
+      ),
+      GoRoute(
+        path: kSignUpScreen,
+        builder: (context, state) {
+          final extras =
+              GoRouterState.of(context).extra as Map<String, dynamic>;
+
+          final cubit = extras['cubit'] as SignUpCubit;
+          return BlocProvider.value(value: cubit, child: const SignUpScreen());
         },
       ),
 
       GoRoute(
         path: kCreateAccount,
         builder: (context, state) {
-          final signUpCubit = state.extra as SignUpCubit;
+          final extras =
+              GoRouterState.of(context).extra as Map<String, dynamic>;
+          final role = extras['role'] as String;
+          final cubit = extras['cubit'] as SignUpCubit;
           return BlocProvider.value(
-            value: signUpCubit,
-            child: const CreateAccountScreenBody(),
+            value: cubit,
+            child: CreateAccountScreenBody(role: role),
           );
         },
       ),

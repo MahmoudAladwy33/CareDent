@@ -7,11 +7,14 @@ class UpdateUserRequestBody {
   @JsonKey(name: 'Phone')
   final String ? phone;
   final String ? healthRecord;
-
+   final String ? skills;
+  final String ? year;
   UpdateUserRequestBody({
     this.fullName,
     this.phone,
     this.healthRecord,
+    this.skills,
+    this.year,
   });
 
   Map<String, dynamic> toJson() => _$UpdateUserRequestBodyToJson(this);

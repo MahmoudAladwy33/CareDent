@@ -182,7 +182,10 @@ class _SignUpFormState extends State<SignUpForm> {
                 if ((formKey2.currentState as FormState).validate()) {
                   GoRouter.of(context).push(
                     AppRouter.kCreateAccount,
-                    extra: context.read<SignUpCubit>(),
+                    extra: {
+                      'role': context.read<SignUpCubit>().roleController.text,
+                      'cubit': context.read<SignUpCubit>(),
+                    },
                   );
                 }
               },

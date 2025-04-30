@@ -1,4 +1,5 @@
 import 'package:caredent/features/home/data/models/get_reports/get_reports_model.dart';
+import 'package:caredent/features/home/ui/widgets/reviews_empty_list.dart';
 import 'package:caredent/features/home/ui/widgets/reviews_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,9 @@ class ReviewsListView extends StatelessWidget {
   final List<Report> reportList;
   @override
   Widget build(BuildContext context) {
+    if (reportList.isEmpty) {
+      return ReviewsEmptyList();
+    }
     return Padding(
       padding: EdgeInsets.only(top: 238.h),
       child: SizedBox(

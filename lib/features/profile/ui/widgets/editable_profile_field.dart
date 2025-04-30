@@ -10,6 +10,7 @@ class EditableProfileField extends StatefulWidget {
   final int? maxLines;
   final TextEditingController? controller;
   final Function()? onCheckPressed;
+
   const EditableProfileField({
     super.key,
     required this.title,
@@ -27,6 +28,7 @@ class EditableProfileField extends StatefulWidget {
 
 class _EditableProfileFieldState extends State<EditableProfileField> {
   bool isEditing = false;
+  final _formKey = GlobalKey<FormState>(); // ⬅️ Added form key
 
   @override
   Widget build(BuildContext context) {
@@ -45,48 +47,51 @@ class _EditableProfileFieldState extends State<EditableProfileField> {
           Row(
             children: [
               Expanded(
-                child: TextFormField(
-                  controller: widget.controller,
-                  maxLines: widget.maxLines,
-                  validator: widget.validator,
-                  enabled: isEditing,
-                  style: TextStyles.font14GrayRegular.copyWith(
-                    color: const Color(0xff343A40),
-                    fontSize: 15.sp,
-                  ),
-                  decoration: InputDecoration(
-                    disabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Color(0xFFBBD0FF)),
-                      borderRadius: BorderRadius.circular(16.r),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Color(0xFFBBD0FF)),
-                      borderRadius: BorderRadius.circular(16.r),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Color(0xFFBBD0FF)),
-                      borderRadius: BorderRadius.circular(16.r),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.red),
-                      borderRadius: BorderRadius.circular(16.r),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.red),
-                      borderRadius: BorderRadius.circular(16.r),
-                    ),
-                    hintText: widget.value,
-                    hintStyle: TextStyles.font14GrayRegular.copyWith(
+                child: Form(
+                  key: _formKey,
+                  child: TextFormField(
+                    controller: widget.controller,
+                    maxLines: widget.maxLines,
+                    validator: widget.validator,
+                    enabled: isEditing,
+                    style: TextStyles.font14GrayRegular.copyWith(
                       color: const Color(0xff343A40),
                       fontSize: 15.sp,
                     ),
-                    filled: true,
-                    fillColor: Colors.white,
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 16.w,
-                      vertical: 13.h,
+                    decoration: InputDecoration(
+                      disabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Color(0xFFBBD0FF)),
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Color(0xFFBBD0FF)),
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Color(0xFFBBD0FF)),
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      hintText: widget.value,
+                      hintStyle: TextStyles.font14GrayRegular.copyWith(
+                        color: const Color(0xff343A40),
+                        fontSize: 15.sp,
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 16.w,
+                        vertical: 13.h,
+                      ),
+                      isDense: true,
                     ),
-                    isDense: true,
                   ),
                 ),
               ),
@@ -100,10 +105,13 @@ class _EditableProfileFieldState extends State<EditableProfileField> {
                   : GestureDetector(
                     onTap: () {
                       if (isEditing) {
-                        widget.onCheckPressed?.call();
-                        setState(() {
-                          isEditing = false;
-                        });
+                        if (_formKey.currentState!.validate()) {
+                          widget.onCheckPressed?.call();
+                          setState(() {
+                            isEditing = false;
+                          });
+                        }
+                        // else: validation failed, do not exit edit mode
                       } else {
                         setState(() {
                           isEditing = true;
