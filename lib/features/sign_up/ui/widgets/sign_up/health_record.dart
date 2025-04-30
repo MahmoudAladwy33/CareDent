@@ -17,14 +17,17 @@ class HealthRecord extends StatelessWidget {
             children: [
               Icon(Icons.description, size: 20),
               SizedBox(width: 8.w),
-              Text("Health Record", style: TextStyles.font16DarkBlueMedieum),
+              Text(
+                "Chronic diseases (if any)",
+                style: TextStyles.font16DarkBlueMedieum,
+              ),
             ],
           ),
           SizedBox(height: 8.h),
           TextFormField(
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Health Record is required';
+                return 'Chronic diseases is required';
               }
               return null;
             },
@@ -34,7 +37,7 @@ class HealthRecord extends StatelessWidget {
               filled: true,
               fillColor: Color(0xffe5e9ef),
               hintText:
-                  "Enter The Health Record And Any Important Information...",
+                  "Type the chronic diseases and any important information...",
               hintStyle: TextStyles.font14GrayRegular,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),

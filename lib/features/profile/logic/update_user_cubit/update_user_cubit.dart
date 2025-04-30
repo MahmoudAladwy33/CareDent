@@ -14,12 +14,17 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
   TextEditingController fullNameController = TextEditingController();
   TextEditingController healthRecordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+   TextEditingController skillsController = TextEditingController();
+  TextEditingController academicController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
 
   void emitUpdateUserStates({
     required String oldName,
     required String oldPhone,
     required String oldHealthRecord,
+    required String oldSkills,
+    required String oldAcademic,
   }) async {
     emit(const UpdateUserState.loading());
     String token = await SharedPrefHelper.getSecuredString(
@@ -35,6 +40,12 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
             healthRecordController.text.isEmpty
                 ? oldHealthRecord
                 : healthRecordController.text,
+        skills: skillsController.text.isEmpty
+            ? oldSkills
+            : skillsController.text,
+        year: academicController.text.isEmpty
+            ? oldAcademic
+            : academicController.text,                 
       ),
       token,
     );

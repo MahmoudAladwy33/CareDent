@@ -3,7 +3,6 @@ import 'package:caredent/features/profile/ui/widgets/profile_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/helper/app_regex.dart';
 import '../../../../core/logic/user_cubit/user_cubit.dart';
 import '../../../../core/models/user_model.dart';
@@ -22,7 +21,9 @@ class ProfileScreenBody extends StatelessWidget {
     final cubit = context.read<UpdateUserCubit>();
     cubit.fullNameController.text = user.name;
     cubit.phoneController.text = user.phone;
-    cubit.healthRecordController.text = user.healthRecord;
+    cubit.healthRecordController.text = user.healthRecord!;
+    cubit.skillsController.text = user.skills!;
+    cubit.academicController.text = user.year!;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -76,21 +77,57 @@ class ProfileScreenBody extends StatelessWidget {
                 // value: user.phone,
               ),
               SizedBox(height: 12.h),
-              EditableProfileField(
-                onCheckPressed: () {
-                  validateThenUpdate(context, user);
-                },
-                controller: cubit.healthRecordController,
-                maxLines: 3,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Chronic Diseases is required';
-                  }
-                  return null;
-                },
-                title: 'Chronic Diseases (if any)',
-                // value: user.healthRecord,
-              ),
+              user.role == 'student'
+                  ? Column(
+                    children: [
+                      EditableProfileField(
+                        onCheckPressed: () {
+                          validateThenUpdate(context, user);
+                        },
+                        controller: cubit.academicController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Academic year is required';
+                          }
+                          return null;
+                        },
+                        title: 'Academic year',
+                        // value: user.phone,
+                      ),
+                      SizedBox(height: 12.h),
+                      EditableProfileField(
+                        onCheckPressed: () {
+                          validateThenUpdate(context, user);
+                        },
+                        controller: cubit.skillsController,
+                        maxLines: 3,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'skills & experience is required';
+                          }
+                          return null;
+                        },
+                        title: 'skills & experience',
+                        // value: user.healthRecord,
+                      ),
+                      SizedBox(height: 12.h),
+                    ],
+                  )
+                  : EditableProfileField(
+                    onCheckPressed: () {
+                      validateThenUpdate(context, user);
+                    },
+                    controller: cubit.healthRecordController,
+                    maxLines: 3,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Chronic Diseases is required';
+                      }
+                      return null;
+                    },
+                    title: 'Chronic Diseases (if any)',
+                    // value: user.healthRecord,
+                  ),
               SizedBox(height: 34.h),
             ],
           ),
@@ -105,7 +142,9 @@ class ProfileScreenBody extends StatelessWidget {
       context.read<UpdateUserCubit>().emitUpdateUserStates(
         oldName: user.name,
         oldPhone: user.phone,
-        oldHealthRecord: user.healthRecord,
+        oldHealthRecord: user.healthRecord!,
+        oldSkills: user.skills!,
+        oldAcademic: user.year!,
       );
 
       final updatedUser = user.copyWith(
@@ -121,6 +160,15 @@ class ProfileScreenBody extends StatelessWidget {
             cubit.healthRecordController.text.isNotEmpty
                 ? cubit.healthRecordController.text
                 : user.healthRecord,
+
+        skills:
+            cubit.skillsController.text.isNotEmpty
+                ? cubit.skillsController.text
+                : user.skills,
+        year:
+            cubit.academicController.text.isNotEmpty
+                ? cubit.academicController.text
+                : user.year,
       );
 
       context.read<UserCubit>().setUser(updatedUser);

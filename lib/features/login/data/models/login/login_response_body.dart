@@ -24,9 +24,11 @@ class UserData {
   @JsonKey(name: 'Email')
   final String email;
   final String role;
-  final String healthRecord;
-  final String? profileImg;
+  final String? healthRecord;
+  String? profileImg;
   final bool createReport;
+  final String? skills;
+  final String? year;
 
   UserData({
     required this.id,
@@ -34,7 +36,9 @@ class UserData {
     required this.phone,
     required this.email,
     required this.role,
-    required this.healthRecord,
+    this.healthRecord,
+    this.skills,
+    this.year,
     this.profileImg,
     required this.createReport,
   });
