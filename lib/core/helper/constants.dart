@@ -5,6 +5,5 @@ class SharedPrefKeys {
   static const String userEmail = 'userEmail';
   static const String userPhone = 'userPhone';
   static const String reportId = 'reportId';
-  
- 
+  static const String resetToken = 'resetToken';
 }

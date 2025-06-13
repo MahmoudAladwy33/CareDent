@@ -47,10 +47,10 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   }
 
   Future<void> saveUserToken(String token) async {
-    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, token);
+    await SharedPrefHelper.setSecuredString(SharedPrefKeys.resetToken, token);
     DioFactory.setTokenIntoHeaderAfterSignUp(token);
     log(
-      "Saved Token: ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken)}",
+      "Saved Token: ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.resetToken)}",
     );
   }
 
