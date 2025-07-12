@@ -391,7 +391,6 @@ class _ApiService implements ApiService {
   @override
   Future<UpdateReportResponse> updateReport(
     String token,
-    String id,
     UpdateReportRequestBody updateReportRequestBody,
   ) async {
     final _extra = <String, dynamic>{};
@@ -404,7 +403,7 @@ class _ApiService implements ApiService {
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'report/${id}',
+            'report/5244240450',
             queryParameters: queryParameters,
             data: _data,
           )

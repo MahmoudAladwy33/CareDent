@@ -11,13 +11,8 @@ CreateReportRequestBody _$CreateReportRequestBodyFromJson(
 ) => CreateReportRequestBody(
   title: json['title'] as String,
   ratings: json['ratings'],
-  studentId: json['user'] as String,
 );
 
 Map<String, dynamic> _$CreateReportRequestBodyToJson(
   CreateReportRequestBody instance,
-) => <String, dynamic>{
-  'title': instance.title,
-  'ratings': instance.ratings,
-  'user': instance.studentId,
-};
+) => <String, dynamic>{'title': instance.title, 'ratings': instance.ratings};

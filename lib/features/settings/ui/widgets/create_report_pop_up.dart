@@ -94,7 +94,7 @@ void createReportPopup(BuildContext context, UserModel user) {
                                       // Use CreateReportCubit
                                       createReportCubit.emitCreateReportStates(
                                         rating,
-                                        user.id,
+                                       
                                       );
                                       final updatedUser = user.copyWith(
                                         createReport: true,

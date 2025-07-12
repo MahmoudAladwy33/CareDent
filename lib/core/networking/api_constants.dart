@@ -12,7 +12,7 @@ class ApiConstants {
   static const String createReview = "review";
   static const String deleteAppointment = "order/{id}";
   static const String createReport = "report";
-  static const String updateReport = "report/{id}";
+  static const String updateReport = "report/5244240450";
   static const String getReports = "report";
   static const String getAvailableAppointments = "order/student/available";
   static const String acceptAppointment = "order/student/accept";

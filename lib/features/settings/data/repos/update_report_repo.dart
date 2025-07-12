@@ -12,12 +12,10 @@ class UpdateReportRepo {
   Future<ApiResult<UpdateReportResponse>> updateReport(
     UpdateReportRequestBody updateReportRequestBody,
     String token,
-    String id,
   ) async {
     try {
       final response = await _apiService.updateReport(
         token,
-        id,
         updateReportRequestBody,
       );
       return ApiResult.success(response);
